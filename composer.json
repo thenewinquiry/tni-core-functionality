@@ -1,0 +1,28 @@
+{
+    "name": "tni/tni-core-functionality",
+    "description": "Core functionality plugin for TNI WordPress CMS.",
+    "type": "wordpress-plugin",
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    },
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Pea",
+            "email": "pea@glocal.coop"
+        }
+    ],
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "installer-paths": {
+            "./includes/lib/{$name}/": ["type:wordpress-plugin"]
+        }
+    }
+
+}
