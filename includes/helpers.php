@@ -17,6 +17,8 @@
 if ( isset( $_GET['run_tni_copy_custom_fields'] ) && ! get_option( 'tni_copy_custom_fields_complete' ) ) {
      add_action( 'init', 'tni_copy_custom_fields', 10 );
      add_action( 'init', 'tni_copy_custom_fields_finished', 20 );
+} elseif ( isset( $_GET['run_tni_copy_custom_fields'] ) && get_option( 'tni_copy_custom_fields_complete' ) ) {
+     die( "Script already run." );
 }
 
 /**

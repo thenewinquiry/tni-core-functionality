@@ -205,7 +205,6 @@ class TNI_Core_Custom_Fields {
     		return null;
         }
     }
-
 }
 
 new TNI_Core_Custom_Fields();
