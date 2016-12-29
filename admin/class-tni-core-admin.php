@@ -61,7 +61,9 @@ class Tni_Core_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-		if( is_admin() ) {}
+		if( is_admin() ) {
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		}
 	}
 
 	/**
@@ -101,7 +103,7 @@ class Tni_Core_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/tni-core-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, TNI_CORE_DIR_URL . 'assets/css/admin.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -122,7 +124,7 @@ class Tni_Core_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/tni-core-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, TNI_CORE_DIR_URL . 'assets/js/admin.js', array( 'jquery-chosen' ), $this->version, false );
 	}
 
 	/**
