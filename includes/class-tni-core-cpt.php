@@ -36,10 +36,10 @@ class TNI_Core_CPT {
             )
         ) );
 
-        // register_extended_post_type( 'books', array(
-        //     'menu_icon'       => 'dashicons-book-alt'
-        // ) );
-        //
+        register_extended_post_type( 'books', array(
+            'menu_icon'       => 'dashicons-book-alt'
+        ) );
+    
         // register_extended_post_type( 'av', array(
         //     'taxonomies' => array( 'category' )
         // ) );
