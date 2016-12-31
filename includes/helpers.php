@@ -89,4 +89,4 @@ function tni_add_category() {
     }
 
 }
-add_action( 'init', 'tni_add_category' );
+// add_action( 'init', 'tni_add_category' );
