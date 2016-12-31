@@ -18,7 +18,9 @@
             "url":"https://wpackagist.org"
         }
     ],
-    "require": {},
+    "require": {
+      "johnbillion/extended-cpts": "dev-master"
+    },
     "extra": {
         "installer-paths": {
             "./includes/lib/{$name}/": ["type:wordpress-plugin"]

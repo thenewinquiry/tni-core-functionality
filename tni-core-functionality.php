@@ -27,11 +27,14 @@ define( 'TNI_CORE_DIR_URL', plugin_dir_url( __FILE__ ) );
 
 require_once( 'includes/helpers.php' );
 
+require_once( 'includes/lib/extended-cpts/extended-cpts.php' );
+
 // Load plugin class files
 require_once( 'includes/class-tni-core.php' );
+require_once( 'includes/class-tni-core-taxonomy.php' );
+require_once( 'includes/class-tni-core-cpt.php' );
 //require_once( 'includes/class-tni-core-shortcodes.php' );
 require_once( 'includes/class-tni-core-custom-fields.php' );
-require_once( 'includes/class-tni-core-taxonomy.php' );
 
 // Load admin files
 require_once( 'admin/class-tni-core-admin.php' );
