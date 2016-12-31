@@ -55,25 +55,6 @@ class TNI_Core_CPT {
             )
         );
 
-        // register_extended_post_type( 'av', array(
-        //     'taxonomies' => array( 'category' )
-        // ) );
-        //
-        // register_extended_post_type( 'features', array(
-        //     'taxonomies' => array( 'category' )
-        // ) );
-        //
-        // register_extended_post_type( 'essays', array(
-        //     'taxonomies' => array( 'category' )
-        // ) );
-        //
-        // register_extended_post_type( 'and-meanwhile', array(
-        //     'taxonomies' => array( 'category' )
-        // ) );
-        //
-        // register_extended_post_type( 'news', array(
-        //     'taxonomies' => array( 'category' )
-        // ) );
     }
 
     /**
