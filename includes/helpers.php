@@ -69,3 +69,24 @@ function tni_copy_custom_fields_finished() {
      add_option( 'tni_copy_custom_fields_complete', 1 );
      die( "Script finished." );
 }
+
+function tni_add_category() {
+    $posts = get_posts(
+        array(
+            'post_type' => array(
+                'and-meanwhile',
+                'av',
+                'essays',
+                'features',
+                'news'
+            ),
+            'posts_per_page' => -1
+        )
+    );
+
+    foreach( $posts as $post ) {
+        wp_set_object_terms( $post->ID, $post->post_type, 'category', true );
+    }
+
+}
+add_action( 'init', 'tni_add_category' );
