@@ -31,8 +31,8 @@ class TNI_Core_CPT {
 
         register_extended_post_type( 'blogs', array(
             'menu_icon'       => 'dashicons-id-alt',
-            'blog-types' => array(
-                'taxonomy' => 'blog-types'
+            array(
+                'taxonomies' => array( 'category' )
             )
         ) );
 
@@ -40,13 +40,22 @@ class TNI_Core_CPT {
             'menu_icon'       => 'dashicons-book-alt'
         ) );
 
-        register_extended_post_type( 'av' );
+        register_extended_post_type( 'av', array(
+            'taxonomies' => array( 'category' )
+        )
+        );
 
-        register_extended_post_type( 'essays' );
+        register_extended_post_type( 'essays', array(
+            'taxonomies' => array( 'category' )
+        ) );
 
-        register_extended_post_type( 'and-meanwhile' );
+        register_extended_post_type( 'and-meanwhile', array(
+            'taxonomies' => array( 'category' )
+        ) );
 
-        register_extended_post_type( 'news' );
+        register_extended_post_type( 'news', array(
+            'taxonomies' => array( 'category' )
+        ) );
     }
 
     /**
