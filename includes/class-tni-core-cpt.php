@@ -25,7 +25,28 @@ class TNI_Core_CPT {
      *
      */
     function __construct() {
-        register_extended_post_type( 'article' );
+        register_extended_post_type( 'magazines', array(
+            'menu_icon'       => 'dashicons-book'
+        ) );
+
+        register_extended_post_type( 'blogs', array(
+            'menu_icon'       => 'dashicons-id-alt',
+            'blog-types' => array(
+                'taxonomy' => 'blog-types'
+            )
+        ) );
+
+        register_extended_post_type( 'books', array(
+            'menu_icon'       => 'dashicons-book-alt'
+        ) );
+
+        register_extended_post_type( 'av' );
+
+        register_extended_post_type( 'essays' );
+
+        register_extended_post_type( 'and-meanwhile' );
+
+        register_extended_post_type( 'news' );
     }
 
     /**
