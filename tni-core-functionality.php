@@ -27,8 +27,6 @@ define( 'TNI_CORE_DIR_URL', plugin_dir_url( __FILE__ ) );
 
 require_once( 'includes/helpers.php' );
 
-require_once( 'includes/lib/extended-cpts/extended-cpts.php' );
-
 // Load plugin class files
 require_once( 'includes/class-tni-core.php' );
 require_once( 'includes/class-tni-core-taxonomy.php' );
