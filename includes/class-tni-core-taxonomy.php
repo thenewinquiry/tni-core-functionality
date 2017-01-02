@@ -16,7 +16,7 @@
  */
 class TNI_Core_Taxonomy {
 
-    private $slug = '';
+    private $slug = 'blogs';
 
     /**
      * Initialize all the things
@@ -26,7 +26,6 @@ class TNI_Core_Taxonomy {
      */
     function __construct() {
         add_action( 'init', array( $this, 'register_taxonomy' ), 0 );
-        add_action( 'init', array( $this, 'add_media_category' ) );
     }
 
     /**
@@ -38,17 +37,35 @@ class TNI_Core_Taxonomy {
      * @param function $shortcode_function
      *
      */
-    public function register_taxonomy() {}
+    public function register_taxonomy() {
 
-    /**
-     * Add Media Category Term
-     *
-     * @since 1.0.0
-     *
-     * @uses term_exists
-     * @uses wp_insert_term
-     */
-    public function add_media_category() {}
+        $labels = array(
+            'name'                       => _x( 'Types', 'Taxonomy General Name', 'tni-core' ),
+            'singular_name'              => _x( 'Type', 'Taxonomy Singular Name', 'tni-core' ),
+            'menu_name'                  => __( 'Types', 'tni-core' ),
+            'all_items'                  => __( 'All Types', 'tni-core' ),
+        );
+        $rewrite = array(
+            'slug'                       => $this->slug,
+            'with_front'                 => true,
+            'hierarchical'               => false,
+        );
+        $args = array(
+            'labels'                     => apply_filters( 'blog_types_taxonomy_labels', $labels ),
+            'hierarchical'               => true,
+            'public'                     => true,
+            'show_ui'                    => true,
+            'show_admin_column'          => true,
+            'show_in_nav_menus'          => true,
+            'show_tagcloud'              => true,
+            'query_var'                  => 'blog',
+            'rewrite'                    => apply_filters( 'blog_types_taxonomy_rewrite', $rewrite ),
+            'show_in_rest'               => true,
+            'rest_base'                  => 'blogs',
+        );
+        register_taxonomy( 'blog-types', array( 'blogs' ), apply_filters( 'blog_types_taxonomy_args', $args ) );
+    }
+
 }
 
 new TNI_Core_Taxonomy();
