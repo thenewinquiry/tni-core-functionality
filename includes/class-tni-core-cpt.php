@@ -223,7 +223,7 @@ class TNI_Core_CPT {
      	$args = array(
      		'label'                 => __( 'Book', 'tni-core' ),
      		'description'           => __( 'Post type for books', 'tni-core' ),
-     		'labels'                => apply_filters( 'register_books_labesls', $labels ),
+     		'labels'                => apply_filters( 'register_books_labels', $labels ),
      		'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'custom-fields', ),
      		'hierarchical'          => false,
      		'public'                => true,
