@@ -88,6 +88,16 @@ class TNI_Core_Custom_Fields {
     		'id' => 'acf_essay',
     		'title' => __( 'Featured Content', 'tni' ),
     		'fields' => array (
+                array (
+    				'key' => 'field_582932fpea002',
+    				'label' => __( 'DEK (Subhead)', 'tni-core' ),
+    				'name' => 'post_subhead',
+    				'type' => 'wysiwyg',
+    				'instructions' => __( 'Text that appears below article title.', 'tni-core' ),
+    				'default_value' => '',
+    				'toolbar' => 'full',
+    				'media_upload' => 'yes',
+    			),
     			array (
     				'key' => 'field_582932fcbf795',
     				'label' => __( 'Featured Text', 'tni-core' ),
