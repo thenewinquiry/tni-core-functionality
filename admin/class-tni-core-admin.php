@@ -64,6 +64,15 @@ class Tni_Core_Admin {
 		if( is_admin() ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		}
+
+
+		if( function_exists( 'acf_add_options_page' ) ) {
+			$this->add_options_page();
+		}
+
+		if( function_exists('acf_add_local_field_group') ) {
+			$this-> add_fields();
+		}
 	}
 
 	/**
@@ -73,7 +82,76 @@ class Tni_Core_Admin {
 	 *
 	 * @uses acf_add_options_page()
 	 */
-	public function add_options_page() {}
+	public function add_options_page() {
+		$defaults = array(
+			'page_title' 	=> __( 'Featured Content', 'tni-core' ),
+			'menu_title' 	=> __( 'Featured Content', 'tni-core' ),
+			'icon_url' 		=> 'dashicons-star-filled',
+			'menu_slug' 	=> 'featured-content',
+			'capability' 	=> 'edit_posts',
+			'position'		=> 20.5
+		);
+		$args = apply_filters( 'tni-options-page-arguments', $defaults );
+
+		acf_add_options_page( $args );
+	}
+
+	/**
+	 * Add Fields
+	 *
+	 * @since 1.0.2
+	 *
+	 * @uses acf_add_options_page()
+	 */
+	public function add_fields() {
+		acf_add_local_field_group( array (
+			'key' => 'group_5892ad11bbd67',
+			'title' => __( 'Featured Content', 'tni-core' ),
+			'fields' => array (
+				array (
+					'post_type' => array (
+						0 => 'magazines',
+					),
+					'taxonomy' => array (
+					),
+					'allow_null' => 0,
+					'multiple' => 0,
+					'return_format' => 'object',
+					'ui' => 1,
+					'key' => 'field_5892ad3e5e360',
+					'label' => __( 'Current Issue', 'tni-core' ),
+					'name' => 'current_issue',
+					'type' => 'post_object',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array (
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+				),
+			),
+			'location' => array (
+				array (
+					array (
+						'param' => 'options_page',
+						'operator' => '==',
+						'value' => 'featured-content',
+					),
+				),
+			),
+			'menu_order' => 0,
+			'position' => 'normal',
+			'style' => 'seamless',
+			'label_placement' => 'top',
+			'instruction_placement' => 'label',
+			'hide_on_screen' => '',
+			'active' => 1,
+			'description' => '',
+		));
+
+	}
 
 	/**
 	 * Get Settings
