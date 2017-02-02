@@ -147,8 +147,8 @@ class TNI_Core_Custom_Fields {
     		'fields' => array (
     			array (
     				'key' => 'field_582ccddeef2a3',
-    				'label' => __( 'Editor\'s Note', 'tni-core' ),
-    				'name' => 'editors_note',
+    				'label' => __( 'Table of Contents', 'tni-core' ),
+    				'name' => 'issue_toc',
     				'type' => 'wysiwyg',
     				'default_value' => '',
     				'toolbar' => 'full',

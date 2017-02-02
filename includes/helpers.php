@@ -53,8 +53,8 @@ function tni_copy_custom_fields() {
      $magazines = get_posts( $magazine_args );
 
      foreach( $magazines as $magazine ) {
-         $old_mag_meta = apply_filters( 'meta_content', get_post_meta( $magazine->ID, '_additional_content_1', true ) );
-         add_post_meta( $magazine->ID, 'editors_note', $old_mag_meta, true );
+         $old_mag_meta = apply_filters( 'meta_content', get_post_meta( $magazine->ID, 'editors_note', true ) );
+         add_post_meta( $magazine->ID, 'issue_toc', $old_mag_meta, true );
      }
 
 }
