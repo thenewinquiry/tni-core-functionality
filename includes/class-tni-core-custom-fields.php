@@ -91,7 +91,7 @@ class TNI_Core_Custom_Fields {
           array (
             'key' => 'field_58925eaad798e',
             'label' => __( 'Issue', 'tni-core' ),
-            'name' => 'issue',
+            'name' => 'issue_relationship',
             'type' => 'page_link',
             'instructions' => __( 'Issue this article belongs to.', 'tni-core' ),
             'post_type' => array (
