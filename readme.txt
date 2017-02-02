@@ -24,6 +24,7 @@ This section describes how to install the plugin and get it working.
 
 = 1.0.2.1 February 2, 2017 =
 * Renamed `editors_note` field to `issue_toc`
+* Added `issue_gallery` field to add WP gallery
 
 = 1.0.2 =
 * Added options page and option field to select current issue

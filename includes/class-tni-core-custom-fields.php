@@ -84,7 +84,7 @@ class TNI_Core_Custom_Fields {
     		'menu_order' => 0,
     	));
 
-    	register_field_group(array (
+    	register_field_group( array (
     		'id' => 'acf_essay',
     		'title' => __( 'Featured Content', 'tni' ),
     		'fields' => array (
@@ -141,7 +141,7 @@ class TNI_Core_Custom_Fields {
     		'menu_order' => 0,
     	));
 
-    	register_field_group(array (
+    	register_field_group( array (
     		'id' => 'acf_magazine',
     		'title' => __( 'Magazine Details', 'tni-core' ),
     		'fields' => array (
@@ -155,14 +155,24 @@ class TNI_Core_Custom_Fields {
     				'media_upload' => 'yes',
     			),
           array (
-    				'key' => 'field_58925f53d9abf',
-    				'label' => __( 'Issue Promo', 'tni-core' ),
-    				'name' => 'issue_promo',
-    				'type' => 'image',
-    				'save_format' => 'url',
-    				'preview_size' => 'thumbnail',
-    				'library' => 'all',
-    			),
+      			'tabs' => 'all',
+      			'toolbar' => 'full',
+      			'media_upload' => 1,
+      			'default_value' => '',
+      			'delay' => 0,
+      			'key' => 'field_5893b61e91d3d',
+      			'label' => __( 'Insert Gallery', 'tni-core' ),
+      			'name' => 'issue_gallery',
+      			'type' => 'wysiwyg',
+      			'instructions' => __( 'Use Add Media button to attach a gallery.', 'tni-core' ),
+      			'required' => 0,
+      			'conditional_logic' => 0,
+      			'wrapper' => array (
+      				'width' => '',
+      				'class' => '',
+      				'id' => '',
+      			),
+      		),
           array (
       			'post_type' => array (
       				0 => 'post',
