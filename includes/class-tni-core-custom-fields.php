@@ -88,7 +88,19 @@ class TNI_Core_Custom_Fields {
     		'id' => 'acf_essay',
     		'title' => __( 'Featured Content', 'tni' ),
     		'fields' => array (
-                array (
+          array (
+            'key' => 'field_58925eaad798e',
+            'label' => __( 'Issue', 'tni-core' ),
+            'name' => 'issue_relationship',
+            'type' => 'page_link',
+            'instructions' => __( 'Issue this article belongs to.', 'tni-core' ),
+            'post_type' => array (
+              0 => 'magazines',
+            ),
+            'allow_null' => 0,
+            'multiple' => 0,
+          ),
+          array (
     				'key' => 'field_582932fpea002',
     				'label' => __( 'DEK (Subhead)', 'tni-core' ),
     				'name' => 'post_subhead',
@@ -135,13 +147,45 @@ class TNI_Core_Custom_Fields {
     		'fields' => array (
     			array (
     				'key' => 'field_582ccddeef2a3',
-    				'label' => __( 'Editor\'s Note', 'tni-core' ),
-    				'name' => 'editors_note',
+    				'label' => __( 'Table of Contents', 'tni-core' ),
+    				'name' => 'issue_toc',
     				'type' => 'wysiwyg',
     				'default_value' => '',
     				'toolbar' => 'full',
     				'media_upload' => 'yes',
     			),
+          array (
+    				'key' => 'field_58925f53d9abf',
+    				'label' => __( 'Issue Promo', 'tni-core' ),
+    				'name' => 'issue_promo',
+    				'type' => 'image',
+    				'save_format' => 'url',
+    				'preview_size' => 'thumbnail',
+    				'library' => 'all',
+    			),
+          array (
+      			'post_type' => array (
+      				0 => 'post',
+      			),
+      			'taxonomy' => array (
+      			),
+      			'allow_null' => 0,
+      			'multiple' => 0,
+      			'return_format' => 'object',
+      			'ui' => 1,
+      			'key' => 'field_5892ab93401b1',
+      			'label' => __( 'Featured Article', 'tni-core' ),
+      			'name' => 'featured_article',
+      			'type' => 'post_object',
+      			'instructions' => '',
+      			'required' => 0,
+      			'conditional_logic' => 0,
+      			'wrapper' => array (
+      				'width' => '',
+      				'class' => '',
+      				'id' => '',
+      			),
+      		),
     		),
     		'location' => array (
     			array (
@@ -168,7 +212,7 @@ class TNI_Core_Custom_Fields {
     		'fields' => array (
     			array (
     				'key' => 'field_582ccdb6cd651',
-    				'label' => 'Book Imprint',
+    				'label' => __( 'Book Imprint', 'tni-core' ),
     				'name' => 'book_imprint',
     				'type' => 'wysiwyg',
     				'default_value' => '',
