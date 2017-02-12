@@ -65,6 +65,10 @@ class Tni_Core_Admin {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		}
 
+		add_action( 'admin_print_footer_scripts', array( $this, 'quicktags' ) );
+
+		add_filter( 'mce_buttons_2', array( $this, 'customize_wysiwyg_buttons' ) );
+
 
 		if( function_exists( 'acf_add_options_page' ) ) {
 			$this->add_options_page();
@@ -203,6 +207,49 @@ class Tni_Core_Admin {
 		 * class.
 		 */
 		wp_enqueue_script( $this->plugin_name, TNI_CORE_DIR_URL . 'assets/js/admin.js', array( 'jquery-chosen' ), $this->version, false );
+	}
+
+	/**
+	 * Create Quicktags
+	 *
+	 * @since 1.0.3
+	 *
+	 * @uses admin_print_footer_script
+	 * @link https://codex.wordpress.org/Quicktags_API
+	 *
+	 * @return void
+	 */
+	public function quicktags() {
+		if ( wp_script_is( 'quicktags' ) ) { ?>
+
+			<script type="text/javascript">
+				QTags.addButton( 'dropcap', 'drop cap', '<span class="drop-cap">', '</span>', 'w', 'Dropcap', 50 );
+				QTags.addButton( 'figcaption', 'caption', '<figcaption>', '</figcaption>', 'f', 'Figcaption', 52 );
+				QTags.addButton( 'showmore', 'show more', '<div class="show-more">', '</div>', 'm', 'Showmore', 54 );
+			</script>
+
+		<?php
+		}
+	}
+
+	/**
+	 * Custom WYSIWYG Editor Buttons
+	 *
+	 * @since 1.0.3
+	 *
+	 * @link https://codex.wordpress.org/Plugin_API/Filter_Reference/mce_buttons,_mce_buttons_2,_mce_buttons_3,_mce_buttons_4
+	 *
+	 * @param array $buttons
+	 * @return array $buttons
+	 */
+	public function customize_wysiwyg_buttons( $buttons ) {
+		$remove = array(
+			'formatselect',
+			'forecolor',
+		 	'strikethrough'
+		);
+
+		return array_diff( $buttons, $remove );
 	}
 
 	/**
