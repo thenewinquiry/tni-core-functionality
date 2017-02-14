@@ -5,14 +5,18 @@
   overflow: hidden;
   position: absolute !important;
 }
-.show-more-section  input#show-more:checked + div {
-    max-height: 99em;
-    opacity: 1;
-    height: auto;
-    overflow: hidden;
-    transition: opacity 1.25s linear, max-height 1.25s linear; }
 
-.show-more-section  .hide {
+.show-more-section  input#show-more:checked + .hide {
+  max-height: 99em;
+  opacity: 1;
+  height: auto;
+  overflow: hidden;
+  transition: opacity 1.25s linear, max-height 1.25s linear;
+}
+
+.show-more-section .hide {
   opacity: 0;
   max-height: 0;
-  transition: opacity 1.25s linear, max-height 1.25s linear; }
+  overflow: hidden;
+  transition: opacity 1s linear, max-height 1s linear;
+}
