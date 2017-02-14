@@ -10,7 +10,7 @@
  * Text Domain:     tni-core
  * Domain Path:     /languages
  *
- * Version:         1.0.3
+ * Version:         1.0.4
  *
  * @package         Tni_Core_Functionality
  */
@@ -31,7 +31,7 @@ require_once( 'includes/helpers.php' );
 require_once( 'includes/class-tni-core.php' );
 require_once( 'includes/class-tni-core-taxonomy.php' );
 require_once( 'includes/class-tni-core-cpt.php' );
-//require_once( 'includes/class-tni-core-shortcodes.php' );
+require_once( 'includes/class-tni-core-shortcodes.php' );
 require_once( 'includes/class-tni-core-custom-fields.php' );
 
 // Load admin files
@@ -45,7 +45,7 @@ require_once( 'admin/class-tni-core-admin.php' );
  * @return object Tni_Core
  */
 function Tni_Core() {
-	$instance = Tni_Core::instance( __FILE__, '1.0.3' );
+	$instance = Tni_Core::instance( __FILE__, '1.0.4' );
 
 	return $instance;
 }

@@ -23,10 +23,10 @@ class TNI_Core_Shortcodes {
      *
      */
     function __construct() {
-        add_action( 'init', array( $this, 'detect_shortcode_ui' ) );
+        //add_action( 'init', array( $this, 'detect_shortcode_ui' ) );
 
         add_action( 'init', array( $this, 'register_shortcodes' ) );
-        add_action( 'register_shortcode_ui', array( $this, 'shortcode_ui' ) );
+        //add_action( 'register_shortcode_ui', array( $this, 'shortcode_ui' ) );
     }
 
     /**
@@ -66,20 +66,78 @@ class TNI_Core_Shortcodes {
      * @param function $shortcode_function
      *
      */
-    public function register_shortcodes() {}
+    public function register_shortcodes() {
+      add_shortcode( 'show-more', array( $this, 'showmore_shortcode' ) );
+      add_shortcode( 'image-caption', array( $this, 'caption_shortcode' ) );
+      add_shortcode( 'drop-cap', array( $this, 'dropcap_shortcode' ) );
+    }
 
     /**
-     * Countdown Shortcode
+     * Show More Shortcode
      *
-     * @since 1.0.0
+     * @since 1.0.4
      *
      * @param array $atts
      * @return string $output
      */
-    public function shortcode( $attr, $content, $shortcode_tag ) {}
+    public function showmore_shortcode( $attr, $content = null ) {
+
+      ob_start(); ?>
+
+      <div class="show-more-section">
+        <label for="show-more" class="show-more-label"><?php _e( 'Show More', 'tni-core' ); ?></label>
+        <input type="checkbox" name="show-more" id="show-more">
+        <div class="hide">
+          <?php echo $content; ?>
+        </div>
+      </div>
+
+      <?php
+      return ob_get_clean();
+
+    }
 
     /**
-     * Countdown Shortcode UI
+     * Drop-cap Shortcode
+     *
+     * @since 1.0.4
+     *
+     * @param array $atts
+     * @return string $output
+     */
+    public function dropcap_shortcode( $attr, $content = null ) {
+
+      ob_start(); ?>
+
+      <span class="drop-cap"><?php echo $content; ?></span>
+
+      <?php
+      return ob_get_clean();
+
+    }
+
+    /**
+     * Image Caption
+     *
+     * @since 1.0.4
+     *
+     * @param array $atts
+     * @return string $output
+     */
+    public function caption_shortcode( $attr, $content = null ) {
+
+      ob_start(); ?>
+
+      <figcaption class="wp-caption-text"><?php echo $content; ?></figcaption>
+
+      <?php
+      return ob_get_clean();
+
+    }
+
+
+    /**
+     * Shortcode UI
      *
      * @since 1.0.0
      *

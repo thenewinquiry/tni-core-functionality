@@ -100,6 +100,10 @@ class TNI_Core {
 		$this->assets_dir = trailingslashit( $this->dir ) . 'assets';
 		$this->assets_url = esc_url( trailingslashit( plugins_url( '/assets/', $this->file ) ) );
 
+		if( !is_admin() ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		}
+
 		$this->script_suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		register_activation_hook( $this->file, array( $this, 'install' ) );
@@ -126,6 +130,17 @@ class TNI_Core {
 	} // End load_localisation ()
 
 	/**
+	 * Enqueue Styles
+	 *
+	 * @since 1.0.4
+	 *
+	 * @return void
+	 */
+	public function enqueue_styles() {
+		wp_enqueue_style( 'tni-core', TNI_CORE_DIR_URL . 'assets/css/public.css', '', null );
+	}
+
+	/**
 	 * Load plugin textdomain
 	 * @access  public
 	 * @since   0.1.0
@@ -150,7 +165,7 @@ class TNI_Core {
 	 * @see TNI_Core()
 	 * @return Main TNI_Core instance
 	 */
-	public static function instance ( $file = '', $version = '1.0.0' ) {
+	public static function instance ( $file = '', $version = '1.0.3' ) {
 		if ( is_null( self::$_instance ) ) {
 			self::$_instance = new self( $file, $version );
 		}

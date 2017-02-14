@@ -1,0 +1,18 @@
+.show-more-section input#show-more {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  position: absolute !important;
+}
+.show-more-section  input#show-more:checked + div {
+    max-height: 99em;
+    opacity: 1;
+    height: auto;
+    overflow: hidden;
+    transition: opacity 1.25s linear, max-height 1.25s linear; }
+
+.show-more-section  .hide {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 1.25s linear, max-height 1.25s linear; }

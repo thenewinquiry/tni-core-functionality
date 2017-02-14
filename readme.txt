@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.7.1
-Version: 1.0.3
+Version:1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,10 +22,12 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 1.0.4 February 14, 2017 =
+* Added `show-more` shortcode and functionality
+
 = 1.0.3 February 12, 2017 =
-* Added Quicktag for adding  `drop-cap` and `read-more`
+* Added Quicktag for adding  `drop-cap` and `show-more`
 * Added `read-more` functionality
-* Todo: replace existing `[read_more]` code with `<div class="show-more">`
 
 = 1.0.2.1 February 2, 2017 =
 * Renamed `editors_note` field to `issue_toc`
