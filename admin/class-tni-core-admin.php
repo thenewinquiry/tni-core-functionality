@@ -223,9 +223,9 @@ class Tni_Core_Admin {
 		if ( wp_script_is( 'quicktags' ) ) { ?>
 
 			<script type="text/javascript">
-				QTags.addButton( 'dropcap', 'drop cap', '<span class="drop-cap">', '</span>', 'w', 'Dropcap', 50 );
-				QTags.addButton( 'figcaption', 'caption', '<figcaption>', '</figcaption>', 'f', 'Figcaption', 52 );
-				QTags.addButton( 'showmore', 'show more', '<div class="show-more">', '</div>', 'm', 'Showmore', 54 );
+				QTags.addButton( 'dropcap', 'drop cap', '[drop-cap]', '[/drop-cap]', 'w', 'Dropcap', 50 );
+				QTags.addButton( 'figcaption', 'caption', '[image-caption]', '[/image-caption]', 'f', 'Figcaption', 52 );
+				QTags.addButton( 'showmore', 'show more', '[show-more]', '[/show-more]', 'm', 'Showmore', 54 );
 			</script>
 
 		<?php
