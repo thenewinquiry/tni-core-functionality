@@ -226,6 +226,8 @@ class Tni_Core_Admin {
 				QTags.addButton( 'dropcap', 'drop cap', '[drop-cap]', '[/drop-cap]', 'w', 'Dropcap', 50 );
 				QTags.addButton( 'figcaption', 'caption', '[image-caption]', '[/image-caption]', 'f', 'Figcaption', 52 );
 				QTags.addButton( 'showmore', 'show more', '[show-more]', '[/show-more]', 'm', 'Showmore', 54 );
+				QTags.addButton( 'margin-right', 'margin-right', '[margin-right]', '[/margin-right]', 'r', 'Margin-right', 56 );
+				QTags.addButton( 'margin-left', 'margin-left', '[margin-left]', '[/margin-left]', 'l', 'Margin-left', 58 );
 			</script>
 
 		<?php
