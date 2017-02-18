@@ -70,6 +70,10 @@ class TNI_Core_Shortcodes {
       add_shortcode( 'show-more', array( $this, 'showmore_shortcode' ) );
       add_shortcode( 'image-caption', array( $this, 'caption_shortcode' ) );
       add_shortcode( 'drop-cap', array( $this, 'dropcap_shortcode' ) );
+      add_shortcode( 'rl', array( $this, 'margin_right_shortcode' ) );
+      add_shortcode( 'lr', array( $this, 'margin_left_shortcode' ) );
+      add_shortcode( 'margin-right', array( $this, 'margin_right_shortcode' ) );
+      add_shortcode( 'margin-left', array( $this, 'margin_left_shortcode' ) );
     }
 
     /**
@@ -135,6 +139,43 @@ class TNI_Core_Shortcodes {
 
     }
 
+    /**
+     * Margin Left
+     *
+     * @since 1.0.4
+     *
+     * @param array $atts
+     * @return string $output
+     */
+    public function margin_left_shortcode( $attr, $content = null ) {
+
+      ob_start(); ?>
+
+      <div class="margin-left"><?php echo $content; ?></div>
+
+      <?php
+      return ob_get_clean();
+
+    }
+
+    /**
+     * Margin Left
+     *
+     * @since 1.0.4
+     *
+     * @param array $atts
+     * @return string $output
+     */
+    public function margin_right_shortcode( $attr, $content = null ) {
+
+      ob_start(); ?>
+
+      <div class="margin-right"><?php echo $content; ?></div>
+
+      <?php
+      return ob_get_clean();
+
+    }
 
     /**
      * Shortcode UI
