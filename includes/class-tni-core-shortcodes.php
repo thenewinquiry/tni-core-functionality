@@ -70,10 +70,12 @@ class TNI_Core_Shortcodes {
       add_shortcode( 'show-more', array( $this, 'showmore_shortcode' ) );
       add_shortcode( 'image-caption', array( $this, 'caption_shortcode' ) );
       add_shortcode( 'drop-cap', array( $this, 'dropcap_shortcode' ) );
-      add_shortcode( 'rl', array( $this, 'margin_right_shortcode' ) );
-      add_shortcode( 'lr', array( $this, 'margin_left_shortcode' ) );
       add_shortcode( 'margin-right', array( $this, 'margin_right_shortcode' ) );
       add_shortcode( 'margin-left', array( $this, 'margin_left_shortcode' ) );
+      add_shortcode( 'rl', array( $this, 'margin_right_shortcode' ) );
+      add_shortcode( 'rr', array( $this, 'margin_right_shortcode' ) );
+      add_shortcode( 'lr', array( $this, 'margin_left_shortcode' ) );
+      add_shortcode( 'll', array( $this, 'margin_left_shortcode' ) );
     }
 
     /**
