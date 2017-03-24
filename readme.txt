@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.7.2
-Version: 1.0.5.1
+Version: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,10 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.0.6 February 18, 2017 =
+* Added custom JetPack related posts shortcode
+* #9, #10 Added form processor
 
 = 1.0.5.1 February 18, 2017 =
 * Applied legacy `[rr]` and `[ll]` shortcode to `right-margin` and `left-margin` mark-up

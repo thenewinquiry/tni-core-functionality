@@ -76,6 +76,7 @@ class TNI_Core_Shortcodes {
       add_shortcode( 'rr', array( $this, 'margin_right_shortcode' ) );
       add_shortcode( 'lr', array( $this, 'margin_left_shortcode' ) );
       add_shortcode( 'll', array( $this, 'margin_left_shortcode' ) );
+      add_shortcode( 'jetpack-custom-related', array( $this, 'jetpack_related_posts_shortcode' ) );
     }
 
     /**
@@ -177,6 +178,51 @@ class TNI_Core_Shortcodes {
       <?php
       return ob_get_clean();
 
+    }
+
+   /**
+    * Custom JetPack Related Posts
+    *
+    * @since 1.0.6
+    *
+    * @todo Add template loader to allow template to be modified in the theme 
+    *
+    * @uses Jetpack_RelatedPosts
+    * @link https://jetpack.com/support/related-posts/customize-related-posts/
+    *
+    * @return string
+    */
+    public function jetpack_related_posts_shortcode( $atts ) {
+      $related_html = '';
+      if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
+          $related = Jetpack_RelatedPosts::init_raw()
+              ->get_for_post_id(
+                  get_the_ID(),
+                  array( 'size' => 4 )
+              );
+
+          if ( $related ) {
+              foreach ( $related as $result ) {
+                  $related_post = get_post( $result[ 'id' ] );
+                  $thumb = get_the_post_thumbnail( $related_post->ID, 'thumbnail' );
+                  $category = get_the_category( $related_post->ID )[0];
+                  $author = get_the_author_meta( 'display_name', $related_post->post_author );
+                  $author_url = get_author_posts_url( $related_post->post_author );
+                  $subhead = get_post_meta( $related_post->ID, 'post_subhead', true );
+                  if ( !$subhead ) {
+                      $subhead = get_the_excerpt( $related_post->ID );
+                  }
+                  $permalink = get_permalink( $related_post->ID );
+
+                  ob_start();
+
+                  include( TNI_CORE_DIR . '/templates/related-posts.php' );
+
+                  $related_html .= ob_get_clean();
+              }
+          }
+      }
+      return '<div class="related-posts post-wrapper">' . $related_html . '</div>';
     }
 
     /**
