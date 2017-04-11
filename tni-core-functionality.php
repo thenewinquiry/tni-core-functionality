@@ -10,7 +10,7 @@
  * Text Domain:     tni-core
  * Domain Path:     /languages
  *
- * Version:         1.0.7
+ * Version:         1.0.8
  *
  * @package         Tni_Core_Functionality
  */
@@ -26,6 +26,7 @@ define( 'TNI_CORE_DIR', dirname( __FILE__ ) );
 define( 'TNI_CORE_DIR_URL', plugin_dir_url( __FILE__ ) );
 
 require_once( 'includes/helpers.php' );
+require_once( 'includes/template-tags.php' );
 
 // Load plugin class files
 require_once( 'includes/class-tni-core.php' );
@@ -44,7 +45,7 @@ require_once( 'admin/class-tni-core-admin.php' );
  * @return object Tni_Core
  */
 function Tni_Core() {
-	$instance = Tni_Core::instance( __FILE__, '1.0.7' );
+	$instance = Tni_Core::instance( __FILE__, '1.0.8' );
 
 	return $instance;
 }
