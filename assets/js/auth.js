@@ -1,4 +1,4 @@
-$(function() {
+(function($) {
   const BASE_URL = 'https://members.thenewinquiry.com'
 
   function getCookie(name) {
@@ -79,4 +79,4 @@ $(function() {
       }
     });
   }
-});
+})( jQuery );
