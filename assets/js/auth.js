@@ -41,7 +41,18 @@ $(function() {
     });
   }
 
-  // for demo purposes
+  function logout(cb) {
+    $.ajax(`${BASE_URL}/auth/logout`, {
+      type: 'POST',
+      crossDomain: true,
+      xhrFields: {
+        withCredentials: true
+      },
+      contentType: 'application/json',
+      success: cb
+    });
+  }
+
   function check_auth(cb) {
     $.ajax(`${BASE_URL}/auth/ok`, {
       type: 'GET',
