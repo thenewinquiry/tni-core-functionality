@@ -52,42 +52,4 @@
       success: cb
     });
   }
-
-  function check_auth(cb) {
-    $.ajax(`${BASE_URL}/auth/ok`, {
-      type: 'GET',
-      crossDomain: true,
-      xhrFields: {
-        withCredentials: true
-      },
-      success: cb,
-      error: function(xhr, status, err) {
-        if (xhr.status === 401 && xhr.responseJSON.msg === 'Token has expired') {
-          refresh(function() {
-            check_auth(cb);
-          }, function() {
-            // TODO
-            console.log('you need to login again');
-          });
-        }
-      }
-    });
-  }
-
-  function refresh(cb, expired_cb) {
-    $.ajax(`${BASE_URL}/auth/refresh`, {
-      type: 'POST',
-      crossDomain: true,
-      xhrFields: {
-        withCredentials: true
-      },
-      contentType: 'application/json',
-      success: cb,
-      error: function(xhr, status, err) {
-        if (xhr.status === 401) {
-          expired_cb();
-        }
-      }
-    });
-  }
 })( jQuery );
