@@ -146,7 +146,7 @@ class TNI_Core_Custom_Fields {
     		'title' => __( 'Magazine Details', 'tni-core' ),
     		'fields' => array (
     			array (
-    				'key' => 'field_582ccddeef2a3',
+    				'key' => 'field_issue_toc',
     				'label' => __( 'Table of Contents', 'tni-core' ),
     				'name' => 'issue_toc',
     				'type' => 'wysiwyg',
@@ -155,12 +155,60 @@ class TNI_Core_Custom_Fields {
     				'media_upload' => 'yes',
     			),
           array (
+            'key' => 'field_magazine_pdf',
+            'label' => __( 'Magazine PDF', 'tni-core' ),
+            'name' => 'magazine_pdf',
+            'type' => 'file',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array (
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'return_format' => 'url',
+            'library' => 'all',
+            'min_size' => '',
+            'max_size' => '',
+            'mime_types' => 'pdf',
+          ),
+          array (
+            'key' => 'field_related_articles',
+            'label' => __( 'Articles in Magazine', 'tni-core' ),
+            'name' => 'related_articles',
+            'type' => 'relationship',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array (
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'post_type' => array (
+              0 => 'post',
+            ),
+            'taxonomy' => array (
+            ),
+            'filters' => array (
+              0 => 'search',
+              1 => 'taxonomy',
+            ),
+            'elements' => array (
+              0 => 'featured_image',
+            ),
+            'min' => '',
+            'max' => '',
+            'return_format' => 'id',
+          ),
+          array (
       			'tabs' => 'all',
       			'toolbar' => 'full',
       			'media_upload' => 1,
       			'default_value' => '',
       			'delay' => 0,
-      			'key' => 'field_5893b61e91d3d',
+      			'key' => 'field_issue_gallery',
       			'label' => __( 'Insert Gallery', 'tni-core' ),
       			'name' => 'issue_gallery',
       			'type' => 'wysiwyg',
@@ -183,7 +231,7 @@ class TNI_Core_Custom_Fields {
       			'multiple' => 0,
       			'return_format' => 'object',
       			'ui' => 1,
-      			'key' => 'field_5892ab93401b1',
+      			'key' => 'field_featured_article',
       			'label' => __( 'Featured Article', 'tni-core' ),
       			'name' => 'featured_article',
       			'type' => 'post_object',
@@ -216,6 +264,7 @@ class TNI_Core_Custom_Fields {
     		),
     		'menu_order' => 0,
     	));
+
     	register_field_group(array (
     		'id' => 'acf_publications-page',
     		'title' => __( 'Publication Details', 'tni-core' ),
