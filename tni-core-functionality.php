@@ -35,6 +35,7 @@ require_once( 'includes/class-tni-core-cpt.php' );
 require_once( 'includes/class-tni-core-shortcodes.php' );
 require_once( 'includes/class-tni-core-custom-fields.php' );
 require_once( 'includes/class-tni-core-authorization.php' );
+require_once( 'includes/authorization-functions.php' );
 
 // Load admin files
 require_once( 'admin/class-tni-core-admin.php' );
