@@ -14,14 +14,15 @@ class TNI_Core_Authorization {
    * The version number.
    * @var     string
    * @access  public
-   * @since   0.1.0
+   * @since   1.0.9
    */
   public $_version;
+
   /**
 	 * The main plugin file.
 	 * @var     string
 	 * @access  public
-	 * @since   0.1.0
+	 * @since   1.0.9
 	 */
 	public $file;
 
@@ -29,7 +30,7 @@ class TNI_Core_Authorization {
 	 * The main plugin directory.
 	 * @var     string
 	 * @access  public
-	 * @since   0.1.0
+	 * @since   1.0.9
 	 */
 	public $dir;
 
@@ -37,7 +38,7 @@ class TNI_Core_Authorization {
 	 * The plugin assets directory.
 	 * @var     string
 	 * @access  public
-	 * @since   0.1.0
+	 * @since   1.0.9
 	 */
 	public $assets_dir;
 
@@ -45,9 +46,18 @@ class TNI_Core_Authorization {
 	 * The plugin assets URL.
 	 * @var     string
 	 * @access  public
-	 * @since   0.1.0
+	 * @since   1.0.9
 	 */
 	public $assets_url;
+
+  /**
+   * Base URL
+   * Class constant TNI_Core_Authorization::BASEURL
+   * @var     string
+   * @access  public
+   * @since   1.0.9
+   */
+  const BASEURL = 'https://members.thenewinquiry.com';
 
   /**
    * Initialize all the things
