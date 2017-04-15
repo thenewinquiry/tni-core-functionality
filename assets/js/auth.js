@@ -1,5 +1,6 @@
 (function($) {
   const BASE_URL = jsAuthorization.baseURL;
+  const nonce = jsAuthorization.nonce;
 
   function getCookie(name) {
     var value = '; ' + document.cookie;
