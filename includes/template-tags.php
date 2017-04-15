@@ -36,3 +36,26 @@
 
      return '<span class="meta-author"> ' . $author_string . '</span>';
  }
+
+/**
+ * Editors List by Title
+ *
+ * @since 1.0.8.1
+ *
+ * @return void
+ */
+function tni_core_editors_by_title() {
+  $titles = tni_get_users_meta();
+  $template = 'loop-editors.php';
+
+  if( $theme_file = locate_template( array( 'template_parts/' . $template ) ) ) {
+    $file = $theme_file;
+  } else {
+    $file = TNI_CORE_DIR . '/templates/' . $template;
+  }
+
+  foreach( $titles as $title ) {
+    include( $file );
+  }
+
+}
