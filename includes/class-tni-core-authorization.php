@@ -85,7 +85,11 @@ class TNI_Core_Authorization {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'tni-core-authentication', $this->assets_url . 'assets/js/auth.js', array( 'jquery' ), $this->_version, true );
+		wp_enqueue_script( 'tni-core-authentication', $this->assets_url . 'js/auth.js', array( 'jquery' ), $this->_version, true );
+        $js_authorization = array(
+            'baseURL' => TNI_Core_Authorization::BASEURL
+        );
+        wp_localize_script( 'tni-core-authentication', 'jsAuthorization', $js_authorization );
 	}
 
 }

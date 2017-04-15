@@ -20,3 +20,32 @@
   overflow: hidden;
   transition: opacity 1s linear, max-height 1s linear;
 }
+
+.login-modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+.login-modal form {
+  background: #fff;
+  padding: 1em 2em 2em 2em;
+  max-width: 480px;
+  margin: 2em auto;
+  border: 2px solid #333;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+.login-modal p {
+  display: flex;
+}
+.login-modal label,
+.login-modal input {
+  flex: 1;
+}
+.login-modal label {
+  max-width: 100px;
+}
+.login-modal input[type='submit'] {
+  width: 100%;
+}

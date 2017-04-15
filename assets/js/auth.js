@@ -1,5 +1,5 @@
 (function($) {
-  const BASE_URL = 'https://members.thenewinquiry.com'
+  const BASE_URL = jsAuthorization.baseURL;
 
   function getCookie(name) {
     var value = '; ' + document.cookie;
@@ -25,7 +25,7 @@
     }
   });
 
-  function login(email, password, cb) {
+  function login(email, password, cb, onErr) {
     $.ajax(`${BASE_URL}/auth/login`, {
       type: 'POST',
       crossDomain: true,
@@ -37,11 +37,13 @@
         password: password
       }),
       contentType: 'application/json',
-      success: cb
+      success: cb,
+      error: onErr
     });
   }
 
   function logout(cb) {
+    cb = cb || $.noop;
     $.ajax(`${BASE_URL}/auth/logout`, {
       type: 'POST',
       crossDomain: true,
@@ -53,41 +55,58 @@
     });
   }
 
-  function check_auth(cb) {
-    $.ajax(`${BASE_URL}/auth/ok`, {
-      type: 'GET',
-      crossDomain: true,
-      xhrFields: {
-        withCredentials: true
-      },
-      success: cb,
-      error: function(xhr, status, err) {
-        if (xhr.status === 401 && xhr.responseJSON.msg === 'Token has expired') {
-          refresh(function() {
-            check_auth(cb);
-          }, function() {
-            // TODO
-            console.log('you need to login again');
-          });
-        }
-      }
-    });
-  }
+  $('.js-login').on('click', 'a', function() {
+    var self = $(this);
+    var modal = $('<div class="login-modal"></div>');
+    var form = $(`
+      <form>
+        <h3>Login</h3>
+        <ul class="login-errors"></ul>
+        <p>
+          <label>Email</label>
+          <input type="email" name="email">
+        </p>
+        <p>
+          <label>Password</label>
+          <input type="password" name="password">
+        </p>
+        <input type="submit" value="Login">
+      </form>`);
+    modal.append(form);
+    $('body').append(modal);
+    form.on('submit', function(ev) {
+      ev.preventDefault();
+      var email = form.find('[name=email]').val();
+      var password = form.find('[name=password]').val();
 
-  function refresh(cb, expired_cb) {
-    $.ajax(`${BASE_URL}/auth/refresh`, {
-      type: 'POST',
-      crossDomain: true,
-      xhrFields: {
-        withCredentials: true
-      },
-      contentType: 'application/json',
-      success: cb,
-      error: function(xhr, status, err) {
-        if (xhr.status === 401) {
-          expired_cb();
+      var errs = [];
+      var errEl = form.find('.login-errors').empty();
+      if (!email) errs.push('Please enter your email.');
+      if (!password) errs.push('Please enter your password.');
+      if (errs.length > 0) {
+        for (var i=0; i<errs.length; i++) {
+          errEl.append(`<li>${errs[i]}</li>`);
         }
+      } else {
+        login(email, password, function() {
+          self.parent().removeClass('js-login').addClass('js-logout');
+          self.text('Logout');
+          form.remove();
+        }, function(xhr, status, err) {
+          if (xhr.status == 401) {
+            errEl.append(`<li>Incorrect email or password.</li>`);
+          }
+        });
       }
+      return false;
     });
-  }
+  });
+
+  $('.js-logout').on('click', 'a', function() {
+    var self = $(this);
+    logout(function() {
+      self.parent().removeClass('js-logout').addClass('js-login');
+      self.text('Login');
+    });
+  });
 })( jQuery );
