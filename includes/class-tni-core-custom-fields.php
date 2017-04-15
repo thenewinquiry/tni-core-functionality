@@ -29,6 +29,8 @@ class TNI_Core_Custom_Fields {
         if( function_exists( 'register_field_group' ) ) {
             $this->register_field_groups();
         }
+
+        add_filter( 'coauthors_guest_author_fields', array( $this, 'coauthors_guest_author_fields' ), 10, 2 );
     }
 
     /**
@@ -216,7 +218,8 @@ class TNI_Core_Custom_Fields {
     		),
     		'menu_order' => 0,
     	));
-    	register_field_group(array (
+
+    	register_field_group( array(
     		'id' => 'acf_publications-page',
     		'title' => __( 'Publication Details', 'tni-core' ),
     		'fields' => array (
@@ -249,6 +252,67 @@ class TNI_Core_Custom_Fields {
     		),
     		'menu_order' => 0,
     	));
+
+      acf_add_local_field_group( array(
+      	'key' => 'group_user_fields',
+      	'title' => __( 'Editorial Board', 'tni-core' ),
+      	'fields' => array (
+      		array (
+      			'key' => 'field_public_title',
+      			'label' => __( 'Title', 'tni-core' ),
+      			'name' => 'public_title',
+      			'type' => 'text',
+      			'instructions' => '',
+      			'required' => 0,
+      			'conditional_logic' => 0,
+      			'wrapper' => array (
+      				'width' => '',
+      				'class' => '',
+      				'id' => '',
+      			),
+      			'default_value' => '',
+      			'placeholder' => '',
+      			'prepend' => '',
+      			'append' => '',
+      			'maxlength' => '',
+      		),
+      	),
+      	'location' => array (
+      		array (
+      			array (
+      				'param' => 'user_form',
+      				'operator' => '==',
+      				'value' => 'all',
+      			),
+      		),
+      	),
+      	'menu_order' => 0,
+      	'position' => 'normal',
+      	'style' => 'default',
+      	'label_placement' => 'top',
+      	'instruction_placement' => 'label',
+      	'hide_on_screen' => '',
+      	'active' => 1,
+      	'description' => '',
+      ));
+
+    }
+
+    /**
+     * Add Guest Author Fields
+     * @param  [type] $fields_to_return [description]
+     * @param  [type] $groups           [description]
+     * @return [type]                   [description]
+     */
+    public function coauthors_guest_author_fields( $fields, $groups ) {
+      if( in_array( 'all', $groups ) || in_array( 'name', $groups ) ) {
+        $fields[] = array(
+					'key'      => 'public_title',
+					'label'    => __( 'Title', 'tni-core' ),
+					'group'    => 'name',
+				);
+      }
+      return $fields;
     }
 
     /**
