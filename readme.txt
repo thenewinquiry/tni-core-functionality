@@ -25,6 +25,11 @@ This section describes how to install the plugin and get it working.
 = 1.0.9 April 12, 2017 =
 *  #4 Add subscription integration
 
+= 1.0.8.1 April 14, 2017 =
+* #37 About page
+    * Added custom user field for "public_title"
+    * Added template tag for getting editorial list `tni_core_editors_by_title()`
+
 = 1.0.8 April 11, 2017 =
 * Added Co-authors Plus support to Related Posts
 
