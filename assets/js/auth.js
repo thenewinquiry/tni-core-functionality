@@ -1,5 +1,5 @@
 (function($) {
-  const BASE_URL = 'https://members.thenewinquiry.com'
+  const BASE_URL = jsAuthorization.baseURL;
 
   function getCookie(name) {
     var value = '; ' + document.cookie;
