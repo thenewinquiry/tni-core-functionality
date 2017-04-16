@@ -117,6 +117,9 @@ class TNI_Core {
 		$this->load_plugin_textdomain();
 		add_action( 'init', array( $this, 'load_localisation' ), 0 );
 
+		// Instantiate Authentication
+		new TNI_Core_Authorization( $this->file, $this->_version );
+
 	} // End __construct ()
 
 	/**
@@ -137,7 +140,7 @@ class TNI_Core {
 	 * @return void
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( 'tni-core', TNI_CORE_DIR_URL . 'assets/css/public.css', '', null );
+		wp_enqueue_style( 'tni-core', $this->assets_url . 'css/public.css', '', null );
 	}
 
 	/**
