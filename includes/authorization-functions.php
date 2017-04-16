@@ -24,7 +24,7 @@ function tni_core_refresh_auth() {
 
   $resp = wp_remote_post( $url, array( 'cookies' => $cookies, 'headers' => $headers ) );
   if( is_wp_error( $resp ) ) {
-     echo $resp->get_error_message();
+     // echo $resp->get_error_message();
      return false;
   } else {
      $code = wp_remote_retrieve_response_code( $resp );
@@ -48,7 +48,7 @@ function tni_core_check_auth() {
 
   $resp = wp_remote_get( $url, array( 'cookies' => $cookies, 'headers' => $headers ) );
   if( is_wp_error( $resp ) ) {
-     echo $resp->get_error_message();
+     // echo $resp->get_error_message();
      return false;
   } else {
      $code = wp_remote_retrieve_response_code( $resp );

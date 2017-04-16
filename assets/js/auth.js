@@ -90,9 +90,8 @@
         }
       } else {
         login(email, password, function() {
-          self.parent().removeClass('js-login').addClass('js-logout');
-          self.text('Logout');
           form.remove();
+          location.reload();
         }, function(xhr, status, err) {
           if (xhr.status == 401) {
             errEl.append(`<li>Incorrect email or password.</li>`);
@@ -106,8 +105,7 @@
   $('.js-logout').on('click', 'a', function() {
     var self = $(this);
     logout(function() {
-      self.parent().removeClass('js-logout').addClass('js-login');
-      self.text('Login');
+      location.reload();
     });
   });
 })( jQuery );
