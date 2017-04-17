@@ -189,14 +189,15 @@ class TNI_Core_Custom_Fields {
               'id' => '',
             ),
             'post_type' => array (
-              0 => 'post',
-            ),
-            'taxonomy' => array (
-            ),
-            'filters' => array (
-              0 => 'search',
-              1 => 'taxonomy',
-            ),
+      				0 => 'post',
+      				1 => 'blogs',
+      			),
+      			'taxonomy' => array (),
+      			'filters' => array (
+      				0 => 'search',
+      				1 => 'post_type',
+      				2 => 'taxonomy',
+      			),
             'elements' => array (
               0 => 'featured_image',
             ),
