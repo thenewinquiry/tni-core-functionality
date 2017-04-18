@@ -23,10 +23,25 @@ class TNI_Core_Shortcodes {
      *
      */
     function __construct() {
-        //add_action( 'init', array( $this, 'detect_shortcode_ui' ) );
-
         add_action( 'init', array( $this, 'register_shortcodes' ) );
-        //add_action( 'register_shortcode_ui', array( $this, 'shortcode_ui' ) );
+
+        if( function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
+          $this->register_shortcode_ui();
+        }
+
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+    }
+
+    /**
+     * Enqueue Assets
+     *
+     * @since 1.0.11
+     *
+     * @return void
+     */
+    public function enqueue_assets() {
+      wp_register_style( 'darkgenius', esc_url( 'https://omen.darkinquiry.com/css/darkgenius.css' ), null, null );
+      wp_register_script( 'darkgenius', esc_url( 'https://omen.darkinquiry.com/js/darkgenius.js' ), array( 'jquery' ), null, true );
     }
 
     /**
@@ -76,8 +91,22 @@ class TNI_Core_Shortcodes {
       add_shortcode( 'rr', array( $this, 'margin_right_shortcode' ) );
       add_shortcode( 'lr', array( $this, 'margin_left_shortcode' ) );
       add_shortcode( 'll', array( $this, 'margin_left_shortcode' ) );
+      add_shortcode( 'popover', array( $this, 'popover_shortcode' ) );
+      add_shortcode( 'inline-hover', array( $this, 'inline_hover_shortcode' ) );
       add_shortcode( 'jetpack-custom-related', array( $this, 'jetpack_related_posts_shortcode' ) );
     }
+
+    /**
+  	 * Add Register Shortcode UI Action
+  	 *
+  	 * @since 0.1.2
+  	 *
+  	 * @return void
+  	 */
+  	public function register_shortcode_ui() {
+  		add_action( 'register_shortcode_ui', array( $this, 'popover_shortcode_ui' ) );
+      add_action( 'register_shortcode_ui', array( $this, 'inline_hover_shortcode_ui' ) );
+  	}
 
     /**
      * Show More Shortcode
@@ -116,7 +145,7 @@ class TNI_Core_Shortcodes {
 
       ob_start(); ?>
 
-      <span class="drop-cap"><?php echo $content; ?></span>
+      <span class="drop-cap"><?php echo esc_attr( $content ); ?></span>
 
       <?php
       return ob_get_clean();
@@ -135,7 +164,7 @@ class TNI_Core_Shortcodes {
 
       ob_start(); ?>
 
-      <figcaption class="wp-caption-text"><?php echo $content; ?></figcaption>
+      <figcaption class="wp-caption-text"><?php echo esc_attr( $content ); ?></figcaption>
 
       <?php
       return ob_get_clean();
@@ -154,7 +183,7 @@ class TNI_Core_Shortcodes {
 
       ob_start(); ?>
 
-      <div class="margin-left"><?php echo $content; ?></div>
+      <div class="margin-left"><?php echo esc_attr( $content ); ?></div>
 
       <?php
       return ob_get_clean();
@@ -173,11 +202,148 @@ class TNI_Core_Shortcodes {
 
       ob_start(); ?>
 
-      <div class="margin-right"><?php echo $content; ?></div>
+      <div class="margin-right"><?php echo esc_attr( $content ); ?></div>
 
       <?php
       return ob_get_clean();
 
+    }
+
+    /**
+     * Hover Shortcode
+     *
+     * @since 1.0.11
+     *
+     * @return string $html
+     */
+    public function popover_shortcode( $attr, $content = null, $shortcode_tag ) {
+      wp_enqueue_style( 'darkgenius' );
+      wp_enqueue_script( 'darkgenius' );
+
+      extract( shortcode_atts( array(
+        'text'          => '',
+        'url'           => '',
+        'media'         => ''
+  		), $attr, $shortcode_tag ));
+
+      $caption = get_post( $media )->post_excerpt;
+      $image = wp_get_attachment_url( intval( $media ) );
+
+      $html = sprintf(  '<a href="%s" class="annotate" data-effect="popover" data-media="%s" data-caption="%s" target="_blank">%s</a>',
+  			esc_url( $url ),
+  			esc_url( $image ),
+  			( $caption ) ? esc_attr( $caption ) : '',
+  			esc_attr( $content )
+  		);
+
+      return $html;
+    }
+
+    /**
+     * Inline Shortcode
+     *
+     * @since 1.0.11
+     *
+     * @return string
+     */
+    public function inline_hover_shortcode( $attr, $content = null, $shortcode_tag ) {
+      wp_enqueue_style( 'darkgenius' );
+      wp_enqueue_script( 'darkgenius' );
+
+      extract( shortcode_atts( array(
+        'url'           => '',
+        'media'         => ''
+  		), $attr, $shortcode_tag ));
+
+      $caption = get_post( $media )->post_excerpt;
+      $image = wp_get_attachment_url( intval( $media ) );
+
+      $html = sprintf(  '<a href="%s" class="annotate" data-effect="inline" data-image="%s" data-caption="%s" target="_blank">%s</a>',
+  			esc_url( $url ),
+  			esc_url( $image ),
+  			( $caption ) ? esc_attr( $caption ) : '',
+  			esc_attr( $content )
+  		);
+
+      return $html;
+    }
+
+    /**
+     * Popover Shortcode UI
+     *
+     * @since 1.0.11
+     *
+     * @uses shortcode_ui_register_for_shortcode()
+     *
+     * @return void
+     */
+    public function popover_shortcode_ui() {
+      $fields = array(
+  			array(
+  				'label'  => esc_html__( 'Link URL', 'tni-core' ),
+  				'attr'   => 'url',
+  				'type'   => 'url',
+  				'encode' => false,
+  			),
+  			array(
+  				'label'  => esc_html__( 'Image', 'tni-core' ),
+  				'attr'   => 'media',
+  				'type'   => 'attachment',
+  				'encode' => false,
+  			),
+  		);
+
+  		$args = array(
+  			'label' 					=> esc_html__( 'Popover', 'tni-core' ),
+  			'listItemImage' 	=> 'dashicons-format-image',
+  			'post_type'				=> array( 'post', 'blogs' ),
+        'inner_content' => array(
+          'label'        => esc_html__( 'Link text', 'tni-core' ),
+        ),
+  			'attrs' 					=> $fields,
+  		);
+
+  		/* Enable modifying arguments outside of this plugin */
+  	 	shortcode_ui_register_for_shortcode( 'popover', $args );
+    }
+
+    /**
+     * Popover Shortcode UI
+     *
+     * @since 1.0.11
+     *
+     * @uses shortcode_ui_register_for_shortcode()
+     *
+     * @return void
+     */
+    public function inline_hover_shortcode_ui() {
+      $fields = array(
+  			array(
+  				'label'  => esc_html__( 'Link URL', 'tni-core' ),
+  				'attr'   => 'url',
+  				'type'   => 'url',
+  				'encode' => false,
+  			),
+  			array(
+  				'label'  => esc_html__( 'Image', 'tni-core' ),
+  				'attr'   => 'media',
+  				'type'   => 'attachment',
+  				'encode' => false,
+  			),
+  		);
+
+  		$args = array(
+  			'label' 					=> esc_html__( 'Inline Hover', 'tni-core' ),
+  			'listItemImage' 	=> 'dashicons-format-image',
+  			'post_type'				=> array( 'post', 'blogs' ),
+        'inner_content' => array(
+          'label'        => esc_html__( 'Link text', 'tni-core' ),
+        ),
+  			'attrs' 					=> $fields,
+  		);
+
+  		/* Enable modifying arguments outside of this plugin */
+      shortcode_ui_register_for_shortcode( 'inline-hover', $args );
     }
 
    /**
@@ -206,7 +372,7 @@ class TNI_Core_Shortcodes {
               foreach ( $related as $result ) {
                   $post = get_post( $result[ 'id' ] );
                   setup_postdata( $post );
-                  
+
                   $thumb = get_the_post_thumbnail( $post->ID, 'thumbnail' );
                   $category = get_the_category( $post->ID )[0];
                   $author = get_the_author_meta( 'display_name', $post->post_author );

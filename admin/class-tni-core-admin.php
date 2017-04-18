@@ -159,6 +159,8 @@ class Tni_Core_Admin {
 				QTags.addButton( 'showmore', 'show more', '[show-more]', '[/show-more]', 'm', 'Showmore', 54 );
 				QTags.addButton( 'margin-right', 'margin-right', '[margin-right]', '[/margin-right]', 'r', 'Margin-right', 56 );
 				QTags.addButton( 'margin-left', 'margin-left', '[margin-left]', '[/margin-left]', 'l', 'Margin-left', 58 );
+				QTags.addButton( 'popover', 'popover', '[popover]', '[/popover]', 'p', 'Popover', 59 );
+				QTags.addButton( 'inline-hover', 'inline-hover', '[inline-hover]', '[/inline-hover]', 'h', 'Inline Hover', 60 );
 			</script>
 
 		<?php
