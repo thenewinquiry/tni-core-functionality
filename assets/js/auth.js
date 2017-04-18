@@ -72,6 +72,7 @@
           <input type="password" name="password">
         </p>
         <input type="submit" value="Login">
+        <p><a href="${BASE_URL}/reset">Forgot password? Reset it here.</a></p>
       </form>`);
     modal.append(form);
     $('body').append(modal);
