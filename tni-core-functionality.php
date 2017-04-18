@@ -10,7 +10,7 @@
  * Text Domain:     tni-core
  * Domain Path:     /languages
  *
- * Version:         1.0.10
+ * Version:         1.0.11
  *
  * @package         Tni_Core_Functionality
  */
@@ -47,7 +47,7 @@ require_once( 'admin/class-tni-core-admin.php' );
  * @return object Tni_Core
  */
 function Tni_Core() {
-	$instance = Tni_Core::instance( __FILE__, '1.0.10' );
+	$instance = Tni_Core::instance( __FILE__, '1.0.11' );
 
 	return $instance;
 }
