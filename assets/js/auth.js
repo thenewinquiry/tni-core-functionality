@@ -61,7 +61,7 @@
     var modal = $('<div class="login-modal"></div>');
     var form = $(`
       <form>
-        <h3>Login</h3>
+        <h3>Login <a href="#" class="login-close">X</a></h3>
         <ul class="login-errors"></ul>
         <p>
           <label>Email</label>
@@ -74,8 +74,14 @@
         <input type="submit" value="Login">
         <p><a href="${BASE_URL}/reset">Forgot password? Reset it here.</a></p>
       </form>`);
+
     modal.append(form);
     $('body').append(modal);
+
+    modal.on('click', '.login-close', function() {
+      modal.remove();
+    });
+
     form.on('submit', function(ev) {
       ev.preventDefault();
       var email = form.find('[name=email]').val();
