@@ -49,3 +49,7 @@
 .login-modal input[type='submit'] {
   width: 100%;
 }
+.login-modal .login-close {
+  float: right;
+  font-family: 'sans-serif';
+}
