@@ -25,9 +25,14 @@ class TNI_Core_Shortcodes {
     function __construct() {
         add_action( 'init', array( $this, 'register_shortcodes' ) );
 
-        if( function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
-          $this->register_shortcode_ui();
-        }
+        /**
+         * Disable Shortcode UI integration until we can resolve issue of `<p>` tags being added when switching to visual editor
+         * @see Issue #13
+         * @see https://github.com/wp-shortcake/shortcake/issues/721
+         */
+        // if( function_exists( 'shortcode_ui_register_for_shortcode' ) ) {
+        //   $this->register_shortcode_ui();
+        // }
 
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
     }
