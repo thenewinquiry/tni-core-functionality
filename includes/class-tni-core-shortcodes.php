@@ -164,7 +164,7 @@ class TNI_Core_Shortcodes {
 
       ob_start(); ?>
 
-      <figcaption class="wp-caption-text"><?php echo esc_attr( $content ); ?></figcaption>
+      <figcaption class="wp-caption-text"><?php echo $content; ?></figcaption>
 
       <?php
       return ob_get_clean();
@@ -183,7 +183,7 @@ class TNI_Core_Shortcodes {
 
       ob_start(); ?>
 
-      <div class="margin-left"><?php echo esc_attr( $content ); ?></div>
+      <div class="margin-left"><?php echo $content; ?></div>
 
       <?php
       return ob_get_clean();
@@ -202,7 +202,7 @@ class TNI_Core_Shortcodes {
 
       ob_start(); ?>
 
-      <div class="margin-right"><?php echo esc_attr( $content ); ?></div>
+      <div class="margin-right"><?php echo $content; ?></div>
 
       <?php
       return ob_get_clean();
