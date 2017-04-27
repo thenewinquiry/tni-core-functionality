@@ -80,9 +80,11 @@ class Tni_Core_Admin {
 	/**
 	 * Add an Options Page using ACF
 	 *
-	 * @since 0.1.14
+	 * @since 1.1.0
 	 *
 	 * @uses acf_add_options_page()
+	 *
+	 * @return void
 	 */
 	public function add_options_page() {
 		if( function_exists( 'acf_add_options_page' ) ) {
@@ -101,9 +103,11 @@ class Tni_Core_Admin {
 	/**
 	 * Add Fields
 	 *
-	 * @since 1.0.2
+	 * @since 1.1.0
 	 *
 	 * @uses acf_add_options_page()
+	 *
+	 * @return void
 	 */
 	public function add_fields() {
 
@@ -175,7 +179,7 @@ class Tni_Core_Admin {
    * Filter out unpublished posts
    * Relationship fields will only show posts where `post_status = publish`
    *
-   * @since 0.2.8
+   * @since 1.1.0
    *
    * @access public
    *
