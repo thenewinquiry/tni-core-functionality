@@ -44,11 +44,13 @@ class Tni_Core_Admin {
 	 * The Setting Name
 	 * Used for page name and setting name
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.4
 	 * @access   private
 	 * @var      string    $setting_name    The setting that will be registered.
 	 */
-	private $setting_name = '';
+	private $setting_name = 'featured_content';
+
+	private $option_id;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -60,24 +62,41 @@ class Tni_Core_Admin {
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->option_id = 'toplevel_page_featured-content';
 
 		if( is_admin() ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_action( 'admin_menu', array( $this, 'add_options_page' ) );
 		}
+
+		$this->add_fields();
 
 		add_action( 'admin_print_footer_scripts', array( $this, 'quicktags' ) );
 
 		add_filter( 'mce_buttons_2', array( $this, 'customize_wysiwyg_buttons' ) );
+		add_filter( 'acf/fields/relationship/query/name=featured_post', array( $this, 'relationship_options_filter' ), 10, 3 );
   }
 
 	/**
-	 * Add an Options Page
+	 * Add an Options Page using ACF
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.14
 	 *
 	 * @uses acf_add_options_page()
 	 */
-	public function add_options_page() {}
+	public function add_options_page() {
+		if( function_exists( 'acf_add_options_page' ) ) {
+			acf_add_options_page( array(
+				'page_title' 	=> __( 'Featured Content', 'tni-core' ),
+				'menu_title'	=> __( 'Featured Content', 'tni-core' ),
+				'menu_slug' 	=> 'featured-content',
+				'capability'	=> 'edit_posts',
+				'icon_url' 		=> 'dashicons-star-filled',
+				'position' 		=> 50,
+				'redirect'		=> false
+			) );
+		}
+	}
 
 	/**
 	 * Add Fields
@@ -86,7 +105,91 @@ class Tni_Core_Admin {
 	 *
 	 * @uses acf_add_options_page()
 	 */
-	public function add_fields() {}
+	public function add_fields() {
+
+		if( function_exists( 'acf_add_local_field_group' ) ) {
+
+			/**
+			 * Featured Content Options Page Fields
+			 */
+			 acf_add_local_field_group( array (
+			 	'key' => 'group_featured_content',
+			 	'title' => __( 'Featured Article', 'tni-core' ),
+			 	'fields' => array (
+			 		array (
+			 			'key' => 'field_featured_article',
+			 			'label' => __( 'Featured Article', 'tni-core' ),
+			 			'name' => 'featured_article',
+			 			'type' => 'relationship',
+			 			'instructions' => '',
+			 			'required' => 0,
+			 			'conditional_logic' => 0,
+			 			'wrapper' => array (
+			 				'width' => '',
+			 				'class' => '',
+			 				'id' => '',
+			 			),
+			 			'post_type' => array (
+			 				0 => 'post',
+			 				1 => 'magazines',
+			 				2 => 'blogs',
+			 			),
+			 			'taxonomy' => array (
+			 			),
+			 			'filters' => array (
+			 				0 => 'search',
+			 				1 => 'post_type',
+			 				2 => 'taxonomy',
+			 			),
+			 			'elements' => array (
+			 				0 => 'featured_image',
+			 			),
+			 			'min' => 1,
+			 			'max' => 1,
+			 			'return_format' => 'id',
+			 		),
+			 	),
+			 	'location' => array (
+			 		array (
+			 			array (
+			 				'param' => 'options_page',
+			 				'operator' => '==',
+			 				'value' => 'featured-content',
+			 			),
+			 		),
+			 	),
+			 	'menu_order' => 0,
+			 	'position' => 'normal',
+			 	'style' => 'seamless',
+			 	'label_placement' => 'top',
+			 	'instruction_placement' => 'label',
+			 	'hide_on_screen' => '',
+			 	'active' => 1,
+			 	'description' => '',
+			 ));
+
+		}
+	}
+
+	/**
+   * Filter out unpublished posts
+   * Relationship fields will only show posts where `post_status = publish`
+   *
+   * @since 0.2.8
+   *
+   * @access public
+   *
+   * @param  array $options
+   * @param  string $field
+   * @param  obj $the_post
+   * @return array $options
+   */
+  public function relationship_options_filter( $options, $field, $the_post ) {
+
+  	$options['post_status'] = array( 'publish' );
+
+  	return $options;
+  }
 
 	/**
 	 * Get Settings
