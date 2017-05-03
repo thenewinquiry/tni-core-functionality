@@ -143,6 +143,70 @@ class TNI_Core_Custom_Fields {
     		'menu_order' => 0,
     	));
 
+      acf_add_local_field_group( array(
+      	'key' => 'group_seo_info',
+      	'title' => 'SEO Information',
+      	'fields' => array (
+      		array (
+      			'key' => 'field_seo_description',
+      			'label' => __( 'SEO Description', 'tni-core' ),
+      			'name' => 'seo_description',
+      			'type' => 'textarea',
+      			'instructions' => __( 'Text that appears with article when shared on social networks.', 'tni' ),
+      			'required' => 0,
+      			'conditional_logic' => 0,
+      			'wrapper' => array (
+      				'width' => '',
+      				'class' => '',
+      				'id' => '',
+      			),
+      			'default_value' => '',
+      			'placeholder' => '',
+      			'maxlength' => '',
+      			'rows' => '',
+      			'new_lines' => 'wpautop',
+      		),
+      	),
+      	'location' => array (
+      		array (
+      			array (
+      				'param' => 'post_type',
+      				'operator' => '==',
+      				'value' => 'post',
+      			),
+      		),
+      		array (
+      			array (
+      				'param' => 'post_type',
+      				'operator' => '==',
+      				'value' => 'page',
+      			),
+      		),
+      		array (
+      			array (
+      				'param' => 'post_type',
+      				'operator' => '==',
+      				'value' => 'magazines',
+      			),
+      		),
+      		array (
+      			array (
+      				'param' => 'post_type',
+      				'operator' => '==',
+      				'value' => 'blogs',
+      			),
+      		),
+      	),
+      	'menu_order' => 0,
+      	'position' => 'normal',
+      	'style' => 'default',
+      	'label_placement' => 'top',
+      	'instruction_placement' => 'label',
+      	'hide_on_screen' => '',
+      	'active' => 1,
+      	'description' => '',
+      ));
+
     	register_field_group( array (
     		'id' => 'acf_magazine',
     		'title' => __( 'Magazine Details', 'tni-core' ),
