@@ -59,3 +59,90 @@ function tni_core_editors_by_title() {
   }
 
 }
+
+/**
+ * Output Guest Authors
+ *
+ * @since 1.2.0
+ *
+ * @param  array  $args
+ * @return void || array
+ */
+function tni_core_coauthors_wp_list_authors( $args = array() ) {
+  /* Bail if `CoAuthors_Plus` class doesn't exist */
+  if( !class_exists( 'CoAuthors_Plus' ) ) {
+    return;
+  }
+
+	global $coauthors_plus;
+
+	$defaults = array(
+		'hide_empty'       => true,
+    'description'      => true,
+		'number'           => 200, // A sane limit to start to avoid breaking all the things
+    'role'             => ''
+	);
+
+  $args['number'] = ( $args['number'] ) ? (int) $args['number'] : '';
+
+	$args = wp_parse_args( $args, $defaults );
+
+  $term_args = array(
+    'orderby'      => 'name',
+    'hide_empty'   => 0,
+    'number'       => (int) $args['number'],
+  );
+
+	$author_terms = get_terms( $coauthors_plus->coauthor_taxonomy, $term_args );
+	$authors = array();
+
+	foreach ( $author_terms as $author_term ) {
+		if ( false === ( $coauthor = $coauthors_plus->get_coauthor_by( 'user_login', $author_term->name ) ) ) {
+			continue;
+		}
+
+		$authors[ $author_term->name ] = $coauthor;
+
+		$authors[ $author_term->name ]->post_count = $author_term->count;
+	}
+
+	$authors = apply_filters( 'coauthors_wp_list_authors_array', $authors );
+
+  $template = 'loop-authors.php';
+
+  if( $theme_file = locate_template( array( 'template_parts/' . $template ) ) ) {
+    $file = $theme_file;
+  } else {
+    $file = TNI_CORE_DIR . '/templates/' . $template;
+  }
+
+  if( !empty( $authors ) ) {
+
+    echo '<ul>';
+
+    foreach ( (array) $authors as $author ) {
+
+      if( ( $args['hide_empty'] && 0 !== $author->post_count ) || ! $args['hide_empty'] ) {
+
+        /* If a role is passed, check the role of the author matches the one passed */
+        if( !empty( $args['role'] ) ) {
+
+          $role = get_post_meta( $author->ID, 'guest_author_role', true );
+
+          if(  $args['role'] !== $role ) {
+            continue;
+          }
+
+        }
+
+        include( $file );
+
+      }
+
+    }
+
+    echo '</ul>';
+
+  }
+
+}
