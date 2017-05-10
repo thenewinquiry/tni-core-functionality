@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.7.4
-Version: 1.1.1
+Version: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,12 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.2.0 May 9, 2017 =
+* #21 - Display contributor list
+  * Added selectable `guest_author` roles
+  * Added utilities to set up roles
+  * Added template tag `tni_core_coauthors_wp_list_authors( $args = array() )` and shortcode `[guest-author-list]`
 
 = 1.1.1 May 2, 2017 =
 * #17 Added ability to customize text used for post description
