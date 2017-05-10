@@ -14,28 +14,3 @@ jQuery( document ).ready( function ( $ ) {
 	$( tni_chosen_targets ).chosen( tni_chosen_options );
 
 } );
-
-/**
- * Add JS to ACF Actions
- *
- * @see https://www.advancedcustomfields.com/resources/adding-custom-javascript-fields/
- */
-
- jQuery( document ).ready( function ( $ ) {
-
-	 if( 'undefined' !== acf ) {
-
- 		/* Guest Author Edit Screen */
- 		// Move edit screen elements
- 		acf.add_action('ready', function( $el ) {
-
- 			var $publish = $('#coauthors-manage-guest-author-save');
- 			var $role = $('#acf-group_guest_author');
-
- 			$role.insertAfter( $publish );
-
- 		});
-
- 	}
-
- } );
