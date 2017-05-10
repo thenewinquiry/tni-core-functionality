@@ -75,6 +75,12 @@ class Tni_Core_Admin {
 
 		add_filter( 'mce_buttons_2', array( $this, 'customize_wysiwyg_buttons' ) );
 		add_filter( 'acf/fields/relationship/query/name=featured_post', array( $this, 'relationship_options_filter' ), 10, 3 );
+
+		/**
+		 * ACF footer action
+		 * @since 1.2.1
+		 */
+		add_action( 'acf/input/admin_footer', array( $this, 'admin_footer' ) );
   }
 
 	/**
@@ -245,6 +251,35 @@ class Tni_Core_Admin {
 		 * class.
 		 */
 		wp_enqueue_script( $this->plugin_name, TNI_CORE_DIR_URL . 'assets/js/admin.js', array( 'jquery-chosen' ), $this->version, false );
+	}
+
+	/**
+	 * Add inline JS to guest author admin
+	 *
+	 * @since 1.2.1
+	 *
+	 * @see https://www.advancedcustomfields.com/resources/adding-custom-javascript-fields/
+	 *
+	 * @return void
+	 */
+	public function admin_footer() {
+		$current_screen = get_current_screen();
+		if( $current_screen->id === 'guest-author' ) :
+		?>
+
+	<script type="text/javascript">
+	(function($) {
+
+		var $publish = $('#coauthors-manage-guest-author-save');
+		var $role = $('#acf-group_guest_author');
+
+		$role.insertAfter( $publish );
+
+	})(jQuery);
+	</script>
+
+		<?php
+		endif;
 	}
 
 	/**
