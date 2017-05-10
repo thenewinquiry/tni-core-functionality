@@ -30,7 +30,6 @@ class TNI_Core_Custom_Fields {
             $this->register_field_groups();
         }
 
-        add_filter( 'coauthors_guest_author_fields', array( $this, 'coauthors_guest_author_fields' ), 10, 2 );
     }
 
     /**
@@ -409,23 +408,64 @@ class TNI_Core_Custom_Fields {
       	'description' => '',
       ));
 
-    }
+      /**
+       * Guest Author Fields
+       * To add roles, update the `choices` array
+       *
+       * @since 1.2.0
+       */
+      acf_add_local_field_group( array(
+      	'key' => 'group_guest_author',
+      	'title' => __( 'Role', 'tni-core' ),
+      	'fields' => array (
+      		array (
+      			'key' => 'field_guest_author_role',
+      			'label' => __( '', 'tni-core' ),
+      			'name' => 'guest_author_role',
+      			'type' => 'select',
+      			'instructions' => '',
+      			'required' => 0,
+      			'conditional_logic' => 0,
+      			'wrapper' => array (
+      				'width' => '',
+      				'class' => '',
+      				'id' => '',
+      			),
+      			'choices' => array (
+      				'contributor' => 'Contributor',
+      				'editor' => 'Editor',
+      			),
+      			'default_value' => array (
+      				0 => '',
+      			),
+      			'allow_null' => 1,
+      			'multiple' => 0,
+      			'ui' => 0,
+      			'ajax' => 0,
+      			'return_format' => 'value',
+      			'placeholder' => '',
+      		),
+      	),
+      	'location' => array (
+      		array (
+      			array (
+      				'param' => 'post_type',
+      				'operator' => '==',
+      				'value' => 'guest-author',
+      			),
+      		),
+      	),
+      	'menu_order' => 10,
+      	'position' => 'side',
+      	'style' => 'default',
+      	'label_placement' => 'top',
+      	'instruction_placement' => 'label',
+      	'hide_on_screen' => '',
+      	'active' => 1,
+      	'description' => '',
+      ));
 
-    /**
-     * Add Guest Author Fields
-     * @param  [type] $fields_to_return [description]
-     * @param  [type] $groups           [description]
-     * @return [type]                   [description]
-     */
-    public function coauthors_guest_author_fields( $fields, $groups ) {
-      if( in_array( 'all', $groups ) || in_array( 'name', $groups ) ) {
-        $fields[] = array(
-					'key'      => 'public_title',
-					'label'    => __( 'Title', 'tni-core' ),
-					'group'    => 'name',
-				);
-      }
-      return $fields;
+
     }
 
     /**
