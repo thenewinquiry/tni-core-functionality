@@ -10,7 +10,7 @@
  * Text Domain:     tni-core
  * Domain Path:     /languages
  *
- * Version:         1.1.1
+ * Version:         1.2.0
  *
  * @package         Tni_Core_Functionality
  */
@@ -38,9 +38,12 @@ require_once( 'includes/class-tni-core-authorization.php' );
 require_once( 'includes/authorization-functions.php' );
 
 require_once( 'includes/jetpack-customization.php' );
+require_once( 'includes/co-authors-plus-customization.php' );
 
 // Load admin files
 require_once( 'admin/class-tni-core-admin.php' );
+
+require_once( 'includes/utilities.php' );
 
 /**
  * Returns the main instance of Tni_Core to prevent the need to use globals.
@@ -49,7 +52,7 @@ require_once( 'admin/class-tni-core-admin.php' );
  * @return object Tni_Core
  */
 function Tni_Core() {
-	$instance = Tni_Core::instance( __FILE__, '1.1.1' );
+	$instance = Tni_Core::instance( __FILE__, '1.2.0' );
 
 	return $instance;
 }

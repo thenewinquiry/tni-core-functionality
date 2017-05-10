@@ -99,6 +99,7 @@ class TNI_Core_Shortcodes {
       add_shortcode( 'popover', array( $this, 'popover_shortcode' ) );
       add_shortcode( 'inline-hover', array( $this, 'inline_hover_shortcode' ) );
       add_shortcode( 'jetpack-custom-related', array( $this, 'jetpack_related_posts_shortcode' ) );
+      add_shortcode( 'guest-author-list', array( $this, 'guest_author_list_shortcode' ) );
     }
 
     /**
@@ -272,6 +273,35 @@ class TNI_Core_Shortcodes {
 
       return $html;
     }
+
+    /**
+     * List Guest Author Shortcode
+     *
+     * @since 1.2.0
+     *
+     * @param  array $attr
+     * @param  string $content
+     * @param  string $shortcode_tag
+     * @return string $html
+     */
+    public function guest_author_list_shortcode( $attr, $content = null, $shortcode_tag ) {
+
+      extract( shortcode_atts( array(
+        'number'  => '',
+        'role'    => ''
+      ), $attr, $shortcode_tag ) );
+
+      if( function_exists( 'tni_core_coauthors_wp_list_authors' ) ) {
+
+      ob_start(); ?>
+
+        <?php tni_core_coauthors_wp_list_authors( $attr ); ?>
+
+        <?php
+      }
+      return ob_get_clean();
+    }
+
 
     /**
      * Popover Shortcode UI
