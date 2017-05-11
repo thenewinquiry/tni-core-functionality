@@ -238,6 +238,13 @@ class TNI_Core_Custom_Fields {
       				'value' => 'post',
       			),
       		),
+          array (
+      			array (
+      				'param' => 'post_type',
+      				'operator' => '==',
+      				'value' => 'blogs',
+      			),
+      		),
       	),
       	'menu_order' => 0,
       	'position' => 'side',
