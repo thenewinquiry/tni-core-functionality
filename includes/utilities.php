@@ -9,22 +9,9 @@
  */
 
  /**
-  * Run Once
-  * Runs function once
-  * *
-  * @since 1.0.0
-  */
- if ( isset( $_GET['run_tni_copy_custom_fields'] ) && ! get_option( 'tni_copy_custom_fields_complete' ) ) {
-      add_action( 'init', 'tni_copy_custom_fields', 10 );
-      add_action( 'init', 'tni_copy_custom_fields_finished', 20 );
- } elseif ( isset( $_GET['run_tni_copy_custom_fields'] ) && get_option( 'tni_copy_custom_fields_complete' ) ) {
-      die( "Script already run." );
- }
-
- /**
   * Copy Custom Fields
   * Copies meta field data from `_additional_content_*` fields to new custom fields
-  * @usage http://yourdomain.com/?run_tni_copy_custom_fields
+  * @usage run using WP-CLI `wp eval 'tni_copy_custom_fields();'`
   *
   * @since 1.0.0
   *
@@ -58,7 +45,6 @@
       }
 
  }
- add_action( 'init', 'tni_copy_custom_fields', 10 );
 
  /**
   * Set Guest Account Roles
@@ -106,14 +92,4 @@
 
   echo "DONE";
 
- }
-
- /**
-  * Add `tni_copy_custom_fields_complete` Once Function is Run
-  *
-  * @since 1.0.0
-  */
- function tni_copy_custom_fields_finished() {
-      add_option( 'tni_copy_custom_fields_complete', 1 );
-      die( "Script finished." );
  }
