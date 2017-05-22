@@ -93,3 +93,88 @@
   echo "DONE";
 
  }
+
+/**
+ * Switch Post Type
+ * Change post type and taxonomy term, based on any valid WP_Query arguments
+ * Can be run using WP-CLI `wp eval 'tni_switch_post_type();'`
+ * example: `wp eval 'tni_switch_post_type( array( "post_type" => "blogs", "tax_query" => array( array( "taxonomy" => "blog-types", "field" => "term_id", "terms" => 3045 ) ) ), "post", 3049 );'`
+
+ *
+ * @uses set_post_type()
+ * @uses wp_set_post_terms()
+ *
+ * @since 1.2.5
+ *
+ * @param array $find array of WP_Query arguments
+ * @param string $new_post_type
+ * @param int $new_term
+ * @param string $new_taxonomy
+ * @return void
+ */
+function tni_switch_post_type( $old_post_type, $old_term = null, $old_taxonomy = null, $new_post_type, $new_term = null, $new_taxonomy = null ) {
+  $new_term = (int) $new_term;
+
+  echo "START\n";
+
+  if( !post_type_exists( $new_post_type ) ) {
+    echo "The post type $new_post_type does not exist";
+    return new WP_Error( 'post_type-invalid', __( "The post type {$new_post_type} does not exist", 'tni-core' ) );
+  }
+
+  /* Base query */
+  $args = array(
+    'post_type'       => $old_post_type,
+    'posts_per_page'  => -1
+  );
+
+  /* If the ter doesn't exist, return an error */
+  if( ( $old_term ) && !term_exists( $old_term, $old_taxonomy ) ) {
+    echo "The taxonomy term $old_term does not exist";
+    return new WP_Error( 'term-invalid', __( "The taxonomy term {$old_term} does not exist", 'tni-core' ) );
+  }
+
+  /* If the taxonomy doesn't exist, return an error */
+  if( ( $old_taxonomy ) && !taxonomy_exists( $old_taxonomy ) ) {
+    echo "The taxonomy $old_taxonomy does not exist";
+    return new WP_Error( 'taxonomy-invalid', __( "The taxonomy {$old_taxonomy} does not exist", 'tni-core' ) );
+  }
+
+  /* If query term was provided */
+  if( $old_term ) {
+    $args['tax_query'] = array(
+      'taxonomy'  => $old_taxonomy,
+      'field'     => 'term_id',
+      'terms'     => (int) $old_term
+    );
+  }
+
+  /* If the ter doesn't exist, return an error */
+  if( ( $new_term ) && !term_exists( $new_term, $new_taxonomy ) ) {
+    echo "The taxonomy term $new_term does not exist";
+    return new WP_Error( 'term-invalid', __( "The taxonomy term {$new_term} does not exist", 'tni-core' ) );
+  }
+
+  /* If the taxonomy doesn't exist, return an error */
+  if( ( $new_taxonomy ) && !taxonomy_exists( $new_taxonomy ) ) {
+    echo "The taxonomy $new_taxonomy does not exist";
+    return new WP_Error( 'taxonomy-invalid', __( "The taxonomy {$new_taxonomy} does not exist", 'tni-core' ) );
+  }
+
+  $posts = get_posts( $args );
+
+  if( empty( $posts ) || is_wp_error( $posts ) ) {
+    echo "There are no posts that match the request";
+    return new WP_Error( 'no-posts', __( 'There are no posts that match the $find request', 'tni-core' ) );
+  }
+
+  foreach( $posts as $post ) {
+    set_post_type( $post->ID, $new_post_type );
+
+    if( $new_term && $new_taxonomy ) {
+      wp_set_post_terms( $post->ID, $new_term, $new_taxonomy, false );
+    }
+  }
+
+  echo "DONE";
+}
