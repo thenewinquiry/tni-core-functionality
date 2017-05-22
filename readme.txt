@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.7.5
-Version: 1.2.4
+Version: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,9 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.2.5 May 22, 2017 =
+* #20 Added utility function to switch post_type `tni_switch_post_type()`
 
 = 1.2.4 May 18, 2017 =
 * #66 {https://github.com/thenewinquiry/tni-theme/issues/66} - Fix permalink for `future` posts
