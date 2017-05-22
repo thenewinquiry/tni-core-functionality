@@ -125,7 +125,8 @@ function tni_switch_post_type( $old_post_type, $old_term = null, $old_taxonomy =
   /* Base query */
   $args = array(
     'post_type'       => $old_post_type,
-    'posts_per_page'  => -1
+    'posts_per_page'  => -1,
+    'post_status'     => 'any'
   );
 
   /* If the ter doesn't exist, return an error */
