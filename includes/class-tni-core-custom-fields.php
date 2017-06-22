@@ -121,6 +121,22 @@ class TNI_Core_Custom_Fields {
     				'toolbar' => 'full',
     				'media_upload' => 'yes',
     			),
+          array (
+      			'key' => 'field_audio_url',
+      			'label' => __( 'Audio URL', 'tni-core' ),
+      			'name' => 'audio_url',
+      			'type' => 'url',
+      			'instructions' => '',
+      			'required' => 0,
+      			'conditional_logic' => 0,
+      			'wrapper' => array (
+      				'width' => '',
+      				'class' => '',
+      				'id' => '',
+      			),
+      			'default_value' => '',
+      			'placeholder' => '',
+      		),
     		),
     		'location' => array (
     			array (
