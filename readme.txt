@@ -2,8 +2,8 @@
 Contributors: misfist
 Tags: custom
 Requires at least: 4.7
-Tested up to: 4.7.5
-Version: 1.2.6
+Tested up to: 4.8
+Version: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,10 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.2.7 June 22, 2017 =
+* #29 Added `audio_url` custom field.
+  * To access value: `get_post_meta( post->ID, 'audio_url', true );`
 
 = 1.2.6 June 21, 2017 =
 * Show scheduled (future) single posts to authenticated users
