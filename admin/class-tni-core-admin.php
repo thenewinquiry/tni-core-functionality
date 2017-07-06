@@ -251,6 +251,14 @@ class Tni_Core_Admin {
 		 * class.
 		 */
 		wp_enqueue_script( $this->plugin_name, TNI_CORE_DIR_URL . 'assets/js/admin.js', array( 'jquery-chosen' ), $this->version, false );
+
+		if( function_exists( 'get_current_screen' ) ) {
+			$post_type = get_current_screen()->post_type;
+			if( 'post' === $post_type  ) {
+				wp_enqueue_script( $this->plugin_name . '-acf', TNI_CORE_DIR_URL . 'admin/js/acf.js', array( 'jquery' ), $this->version, true );
+			}
+
+		}
 	}
 
 	/**

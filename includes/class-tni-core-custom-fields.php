@@ -85,6 +85,47 @@ class TNI_Core_Custom_Fields {
     		'menu_order' => 0,
     	));
 
+      register_field_group( array (
+      	'key' => 'group_subscriber_content',
+      	'title' => __( 'Subscriber Only Content', 'tni-core' ),
+      	'fields' => array (
+      		array (
+      			'key' => 'field_subscriber_only_date',
+      			'label' => __( 'Date', 'tni-core' ),
+      			'name' => 'subscriber_only_date',
+      			'type' => 'date_picker',
+      			'instructions' => __( 'Select date on which content will be available to non-subscribers.', 'tni-core' ),
+      			'required' => 0,
+      			'conditional_logic' => 0,
+      			'wrapper' => array (
+      				'width' => '',
+      				'class' => '',
+      				'id' => '',
+      			),
+      			'display_format' => 'm/d/Y',
+      			'return_format' => 'd/m/Y',
+      			'first_day' => 1,
+      		),
+      	),
+      	'location' => array (
+      		array (
+      			array (
+      				'param' => 'post_type',
+      				'operator' => '==',
+      				'value' => 'post',
+      			),
+      		),
+      	),
+      	'menu_order' => 0,
+      	'position' => 'side',
+      	'style' => 'default',
+      	'label_placement' => 'top',
+      	'instruction_placement' => 'label',
+      	'hide_on_screen' => '',
+      	'active' => 1,
+      	'description' => '',
+      ));
+
     	register_field_group( array (
     		'id' => 'acf_essay',
     		'title' => __( 'Featured Content', 'tni' ),

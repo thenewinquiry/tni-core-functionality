@@ -70,9 +70,10 @@ class TNI_Core_Authorization {
    * Initialize all the things
    *
    * @since 1.0.9
+   * @since 1.2.8 Added default $version
    *
    */
-  function __construct( $file = '', $version ) {
+  function __construct( $file = '', $version = '1.2.8' ) {
     $this->_version = $version;
 
     // Load plugin environment variables

@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.8
-Version: 1.2.7
+Version: 1.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,14 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.2.8 July 6, 2017 =
+* #33 Fixed PHP error caused when `TNI_Core_Authorization` class is instantiated without passing required values `$file` and `$version`
+* Added new functionality for subscriber-only content - In single.php template, add conditionals `tni_is_subscription_only` and `tni_core_check_auth` to serve alternate content to non-subscribers
+  * Added `subscriber_only_date` date field
+  * Moved new Subscriber Only Content metabox below publish box on edit screen
+  * Added `tni_is_subscription_only` that returns true or false if content is subscription-only today
+  * Removed `show_future_posts` function since subscription date will be used instead
 
 = 1.2.7 June 22, 2017 =
 * #29 Added `audio_url` custom field.
