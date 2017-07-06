@@ -82,3 +82,26 @@ function tni_get_users_meta( $field = null ) {
   sort( $titles );
   return array_unique( $titles );
 }
+
+/**
+ * Is Content Subscriber Only
+ * Checks if content is subscription only today
+ *
+ * @since 1.2.8
+ *
+ * @param int $post
+ * @return bool true|false
+ */
+function tni_is_subscription_only( $post ) {
+  $post = (int) $post;
+
+  $subscription_date = get_post_meta( $post, 'subscriber_only_date', true );
+
+  if( !isset( $subscription_date ) || empty( $subscription_date ) ) {
+    return false;
+  }
+
+  $today = date( 'Ymd' );
+
+  return strtotime( $subscription_date ) > strtotime( $today );
+}

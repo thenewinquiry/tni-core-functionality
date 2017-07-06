@@ -45,29 +45,3 @@ function tni_core_future_permalink( $permalink, $post, $leavename, $sample = fal
 }
 add_filter( 'post_link', 'tni_core_future_permalink', 10, 3 );
 add_filter( 'post_type_link', 'tni_core_future_permalink', 10, 4 );
-
-
-/**
- * Show Single Future Posts
- * When posts are scheduled (`post_status` = `future`), show them in single views for authenticated users
- *
- * @since 1.2.6
- *
- * @param  array $posts
- *
- * @return array $posts
- */
-function show_future_posts($posts) {
-   global $wp_query, $wpdb;
-   $auth = tni_core_check_auth();
-   if ($auth && is_single() && empty($posts)) {
-      $posts = $wpdb->get_results($wp_query->request);
-
-      // make sure it only affects future posts, not trashed
-      if(isset($posts[0]->post_status) && $posts[0]->post_status!='future'){
-        $posts=array();
-      }
-   }
-   return $posts;
-}
-add_filter('the_posts', 'show_future_posts');
