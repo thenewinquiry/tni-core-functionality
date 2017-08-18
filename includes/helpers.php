@@ -105,3 +105,65 @@ function tni_is_subscription_only( $post ) {
 
   return strtotime( $subscription_date ) > strtotime( $today );
 }
+
+/**
+ * Get Unauthorized Posts
+ *
+ * @uses tni_is_subscription_only()
+ * @uses tni_core_check_auth()
+ * @uses get_transient()
+ * @uses set_transient()
+ * @link https://codex.wordpress.org/Transients_API
+ *
+ * @since 1.2.9
+ *
+ * @return array $posts | false
+ *
+ */
+function tni_core_get_unauthorized_posts() {
+  /* If user is authorized, all posts are shown regardless of whether they are "subscription_only" */
+  if( !( function_exists( 'tni_core_check_auth' ) ) && $auth = tni_core_check_auth() ) {
+    return false;
+  }
+
+  $posts = get_transient( 'tni_unauthorized_posts' );
+
+  if( false === $posts ) {
+
+    $args = array(
+      'fields'          => 'ids',
+      'posts_per_page'  => -1
+    );
+    $query = new WP_Query( $args );
+    $post_query = $query->get_posts();
+
+    if( !empty( $post_query ) || !is_wp_error( $post_query ) ) {
+      $posts =  array_values( array_filter( $post_query, 'tni_is_subscription_only' ) );
+    }
+
+    set_transient( 'tni_unauthorized_posts', $posts, HOURS_IN_SECONDS * 12 );
+
+  }
+
+  return $posts;
+}
+
+/**
+ * Purge Transients
+ * Each time a post is published, delete the transient
+ * Currently, disabled but can be activated to delete transients upon publishing post
+ * Note: It will not run when a post is updated
+ *
+ * @uses delete_transient()
+ *
+ * @param int $ID
+ * @param obj $post
+ *
+ * @return void
+ */
+function tni_core_purge_transients( $ID, $post ) {
+  if( 'post' === $post->post_type ) {
+    delete_transient( 'tni_unauthorized_posts' );
+  }
+}
+//add_action( 'publish_post', 'tni_core_purge_transients' );
