@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.8
-Version: 1.2.9
+Version: 1.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,10 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.2.10 Sept 15, 2017 =
+* Reduced unauthorized post transient cache time
+* Enabled unauthorized post transient clearing on post publish
 
 = 1.2.9 Aug 18, 2017 =
 * Added function return array of unauthorized post IDs
