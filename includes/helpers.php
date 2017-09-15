@@ -141,7 +141,7 @@ function tni_core_get_unauthorized_posts() {
       $posts =  array_values( array_filter( $post_query, 'tni_is_subscription_only' ) );
     }
 
-    set_transient( 'tni_unauthorized_posts', $posts, HOURS_IN_SECONDS * 12 );
+    set_transient( 'tni_unauthorized_posts', $posts, MINUTE_IN_SECONDS * 5);
 
   }
 
@@ -166,4 +166,4 @@ function tni_core_purge_transients( $ID, $post ) {
     delete_transient( 'tni_unauthorized_posts' );
   }
 }
-//add_action( 'publish_post', 'tni_core_purge_transients' );
+add_action( 'publish_post', 'tni_core_purge_transients' );
