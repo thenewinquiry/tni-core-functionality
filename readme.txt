@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.8
-Version: 1.2.10
+Version: 1.2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,9 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.2.11 October 3, 2017 =
+* #92 Added `audio_url` field to blogs post type. @link https://github.com/thenewinquiry/tni-theme/issues/92
 
 = 1.2.10 Sept 15, 2017 =
 * Reduced unauthorized post transient cache time

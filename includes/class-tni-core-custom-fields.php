@@ -162,22 +162,6 @@ class TNI_Core_Custom_Fields {
     				'toolbar' => 'full',
     				'media_upload' => 'yes',
     			),
-          array (
-      			'key' => 'field_audio_url',
-      			'label' => __( 'Audio URL', 'tni-core' ),
-      			'name' => 'audio_url',
-      			'type' => 'url',
-      			'instructions' => '',
-      			'required' => 0,
-      			'conditional_logic' => 0,
-      			'wrapper' => array (
-      				'width' => '',
-      				'class' => '',
-      				'id' => '',
-      			),
-      			'default_value' => '',
-      			'placeholder' => '',
-      		),
     		),
     		'location' => array (
     			array (
@@ -312,6 +296,62 @@ class TNI_Core_Custom_Fields {
       	'active' => 1,
       	'description' => '',
       ));
+
+
+      if( function_exists('acf_add_local_field_group') ) {
+
+        /**
+         * Add `audio_url` field to posts and blogs
+         * @since 1.2.10
+         */
+        acf_add_local_field_group( array(
+          'key' => 'group_post_audio',
+          'title' => __( 'Post Audio', 'tni-core' ),
+          'fields' => array (
+            array (
+              'key' => 'field_audio_url',
+              'label' => __( 'Audio URL', 'tni-core' ),
+              'name' => 'audio_url',
+              'type' => 'url',
+              'instructions' => '',
+              'required' => 0,
+              'conditional_logic' => 0,
+              'wrapper' => array (
+                'width' => '',
+                'class' => '',
+                'id' => '',
+              ),
+              'default_value' => '',
+              'placeholder' => '',
+            ),
+          ),
+          'location' => array (
+            array (
+              array (
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'blogs',
+              ),
+            ),
+            array (
+              array (
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'post',
+              ),
+            ),
+          ),
+          'menu_order' => 0,
+          'position' => 'normal',
+          'style' => 'default',
+          'label_placement' => 'top',
+          'instruction_placement' => 'label',
+          'hide_on_screen' => '',
+          'active' => 1,
+          'description' => '',
+        ));
+
+      }
 
     	register_field_group( array (
     		'id' => 'acf_magazine',
