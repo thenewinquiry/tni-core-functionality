@@ -152,7 +152,7 @@ class TNI_Core_CPT {
      		'description'           => __( 'Post type for blogs', 'tni-core' ),
      		'labels'                => apply_filters( 'register_blogs_labels', $labels ),
      		'supports'              => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'custom-fields', ),
-     		'taxonomies'            => array( 'blog-types' ),
+     		'taxonomies'            => array( 'blog-types', 'post_tag' ),
      		'hierarchical'          => false,
      		'public'                => true,
      		'show_ui'               => true,
