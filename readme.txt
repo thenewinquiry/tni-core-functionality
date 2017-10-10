@@ -2,8 +2,8 @@
 Contributors: misfist
 Tags: custom
 Requires at least: 4.7
-Tested up to: 4.8
-Version: 1.2.12
+Tested up to: 4.8.2
+Version: 1.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,11 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.2.13 October 10, 2017 =
+* #38 Checkbox for subscriber only content @link https://github.com/thenewinquiry/tni-core-functionality/issues/38
+  * Added `subscriber_only` boolean field
+  * Updated `tni_is_subscription_only` function to fetch posts where `subscriber_only` is true
 
 = 1.2.12 October 3, 2017 =
 * Added tags (`post_tag`) taxonomy to blogs post type @link https://github.com/thenewinquiry/tni-theme/issues/91
