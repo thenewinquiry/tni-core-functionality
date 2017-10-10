@@ -88,6 +88,7 @@ function tni_get_users_meta( $field = null ) {
  * Checks if content is subscription only today
  *
  * @since 1.2.8
+ * @since 1.2.13
  *
  * @param int $post
  * @return bool true|false
@@ -95,15 +96,14 @@ function tni_get_users_meta( $field = null ) {
 function tni_is_subscription_only( $post ) {
   $post = (int) $post;
 
-  $subscription_date = get_post_meta( $post, 'subscriber_only_date', true );
+  /* We could just return `get_post_meta( $post, 'subscriber_only', true )`, but I think this is more readable */
+  $subscription_only = get_post_meta( $post, 'subscriber_only', true );
 
-  if( !isset( $subscription_date ) || empty( $subscription_date ) ) {
+  if( !isset( $subscription_only ) || empty( $subscription_only ) ) {
     return false;
   }
 
-  $today = date( 'Ymd' );
-
-  return strtotime( $subscription_date ) > strtotime( $today );
+  return true;
 }
 
 /**
@@ -141,7 +141,7 @@ function tni_core_get_unauthorized_posts() {
       $posts =  array_values( array_filter( $post_query, 'tni_is_subscription_only' ) );
     }
 
-    set_transient( 'tni_unauthorized_posts', $posts, MINUTE_IN_SECONDS * 5);
+    set_transient( 'tni_unauthorized_posts', $posts, MINUTE_IN_SECONDS * 5 );
 
   }
 
@@ -151,7 +151,6 @@ function tni_core_get_unauthorized_posts() {
 /**
  * Purge Transients
  * Each time a post is published, delete the transient
- * Currently, disabled but can be activated to delete transients upon publishing post
  * Note: It will not run when a post is updated
  *
  * @uses delete_transient()
