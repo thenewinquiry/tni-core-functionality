@@ -85,10 +85,29 @@ class TNI_Core_Custom_Fields {
     		'menu_order' => 0,
     	));
 
-      register_field_group( array (
+      register_field_group( array(
       	'key' => 'group_subscriber_content',
       	'title' => __( 'Subscriber Only Content', 'tni-core' ),
       	'fields' => array (
+          array (
+      			'key' => 'field_subscriber_only',
+      			'label' => __( 'Subscriber Only', 'tni-core' ),
+      			'name' => 'subscriber_only',
+      			'type' => 'true_false',
+      			'instructions' => __( 'Viewable by Subscribers Only?', 'tni-core' ),
+      			'required' => 0,
+      			'conditional_logic' => 0,
+      			'wrapper' => array (
+      				'width' => '',
+      				'class' => '',
+      				'id' => '',
+      			),
+      			'message' => '',
+      			'default_value' => 0,
+      			'ui' => 1,
+      			'ui_on_text' => __( 'True', 'tni-core' ),
+      			'ui_off_text' => __( 'False', 'tni-core' ),
+      		),
       		array (
       			'key' => 'field_subscriber_only_date',
       			'label' => __( 'Date', 'tni-core' ),
