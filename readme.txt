@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.8.2
-Version: 1.3.0
+Version: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,13 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.3.1 October 30, 2017 =
+* #95 SEO customization for JetPack @link https://github.com/thenewinquiry/tni-theme/issues/95
+  * Added Twitter Description (`seo_description_twitter`) field
+  * Added SEO Image (`seo_image`) field
+  * Added filter to display custom meta if data provided
+  * Added seo image size
 
 = 1.3.0 October 29, 2017 =
 * #40 Post bundles
