@@ -149,6 +149,51 @@ function tni_core_get_unauthorized_posts() {
 }
 
 /**
+ * Get the Featured Bundle Posts
+ * If there is a featured Bundle return the posts in the bundle
+ *
+ * @since 1.3.0
+ *
+ * @return mixed array $posts || false
+ */
+function tni_core_get_featured_bundle_posts() {
+  if( $featured_bundle = get_option( 'options_featured_bundle' ) ) {
+
+    $posts = get_transient( 'tni_featured_bundle_posts' );
+
+    if( false === $posts ) {
+
+      $args = array(
+        'fields'          => 'ids',
+        'posts_per_page'  => -1,
+        'tax_query'       => array(
+          array(
+            'taxonomy'    => 'bundle',
+            'field'       => 'term_id',
+            'terms'       => array( (int) $featured_bundle )
+          )
+        )
+      );
+      $query = new WP_Query( $args );
+      $post_query = $query->get_posts();
+
+      if( !empty( $post_query ) || !is_wp_error( $post_query ) ) {
+        $posts =  $post_query;
+      }
+
+      set_transient( 'tni_featured_bundle_posts', $posts, MINUTE_IN_SECONDS * 5 );
+
+    }
+
+    return $posts;
+
+  }
+
+  return false;
+
+}
+
+/**
  * Purge Transients
  * Each time a post is published, delete the transient
  * Note: It will not run when a post is updated
