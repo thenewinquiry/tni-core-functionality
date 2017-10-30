@@ -158,6 +158,32 @@ class Tni_Core_Admin {
 			 			'max' => 1,
 			 			'return_format' => 'id',
 			 		),
+					/**
+					 * Featured Bundle
+					 * @since 1.3.0
+					 */
+					array (
+						'key' => 'field_featured_bundle',
+						'label' => __( 'Featured Bundle', 'tni-core' ),
+						'name' => 'featured_bundle',
+						'type' => 'taxonomy',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => array (
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
+						'taxonomy' => 'bundle',
+						'field_type' => 'select',
+						'allow_null' => 1,
+						'add_term' => 1,
+						'save_terms' => 1,
+						'load_terms' => 1,
+						'return_format' => 'id',
+						'multiple' => 0,
+					),
 			 	),
 			 	'location' => array (
 			 		array (
