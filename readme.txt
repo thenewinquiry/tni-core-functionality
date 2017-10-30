@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.8.2
-Version: 1.2.13
+Version: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,12 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.3.0 October 29, 2017 =
+* #40 Post bundles
+  * Added Bundles taxonomy
+  * Added option to select featured bundle to Featured Content page
+  * Added function to get list of posts in featured bundle
 
 = 1.2.13 October 10, 2017 =
 * #38 Checkbox for subscriber only content @link https://github.com/thenewinquiry/tni-core-functionality/issues/38

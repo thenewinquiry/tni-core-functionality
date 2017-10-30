@@ -10,7 +10,7 @@
  * Text Domain:     tni-core
  * Domain Path:     /languages
  *
- * Version:         1.2.13
+ * Version:         1.3.0
  *
  * @package         Tni_Core_Functionality
  */
@@ -52,7 +52,7 @@ require_once( 'includes/utilities.php' );
  * @return object Tni_Core
  */
 function Tni_Core() {
-	$instance = Tni_Core::instance( __FILE__, 'l.2.13' );
+	$instance = Tni_Core::instance( __FILE__, 'l.3.0' );
 
 	return $instance;
 }
