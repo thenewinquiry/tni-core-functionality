@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.8.2
-Version: 1.3.1
+Version: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,11 @@ This section describes how to install the plugin and get it working.
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.3.2 Novembmer 6, 2017 =
+* #44 Added `bundle` taxonomy to `blogs` post type @link https://github.com/thenewinquiry/tni-core-functionality/issues/44
+  * Added `blogs` to `bundle`
+  * Included `blogs` post type in `tni_core_get_featured_bundle_posts()`
 
 = 1.3.1 October 30, 2017 =
 * #95 SEO customization for JetPack @link https://github.com/thenewinquiry/tni-theme/issues/95

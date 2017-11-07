@@ -106,7 +106,7 @@ class TNI_Core_Taxonomy {
     		'show_tagcloud'              => true,
     		'show_in_rest'               => true,
     	);
-    	register_taxonomy( 'bundle', array( 'post' ), apply_filters( 'bundle_taxonomy_args', $args ) );
+    	register_taxonomy( 'bundle', array( 'post', 'blogs' ), apply_filters( 'bundle_taxonomy_args', $args ) );
 
     }
 

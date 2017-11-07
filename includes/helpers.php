@@ -165,6 +165,7 @@ function tni_core_get_featured_bundle_posts() {
 
       $args = array(
         'fields'          => 'ids',
+        'post_type' => array( 'post', 'blogs' ),
         'posts_per_page'  => -1,
         'tax_query'       => array(
           array(
