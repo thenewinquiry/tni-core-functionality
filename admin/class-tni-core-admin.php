@@ -180,7 +180,7 @@ class Tni_Core_Admin {
 						'allow_null' => 1,
 						'add_term' => 1,
 						'save_terms' => 1,
-						'load_terms' => 1,
+						'load_terms' => 0,
 						'return_format' => 'id',
 						'multiple' => 0,
 					),

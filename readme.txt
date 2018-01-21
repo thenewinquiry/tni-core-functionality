@@ -3,7 +3,7 @@ Contributors: misfist
 Tags: custom
 Requires at least: 4.7
 Tested up to: 4.8.2
-Version: 1.3.2
+Version: 1.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,10 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
-= 1.3.2 Novembmer 6, 2017 =
+= 1.3.3 January 20, 2018 =
+* #46 Changed featured bundle select field to `'load_terms' => 0,`
+
+= 1.3.2 November 6, 2017 =
 * #44 Added `bundle` taxonomy to `blogs` post type @link https://github.com/thenewinquiry/tni-core-functionality/issues/44
   * Added `blogs` to `bundle`
   * Included `blogs` post type in `tni_core_get_featured_bundle_posts()`
